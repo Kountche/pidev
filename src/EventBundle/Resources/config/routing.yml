@@ -1,0 +1,83 @@
+evennement_homepage:
+    path:     /defaut/event
+    defaults: { _controller: EventBundle:Default:index }
+
+evennement_back_afficher:
+    path:     /Back/Afficher
+    defaults: { _controller: EventBundle:Evennement:Afficherback }
+evennement_back_ajouter:
+    path:     /Back/Ajouter
+    defaults: { _controller: EventBundle:Evennement:Ajouterback }
+evennement_back_modifier:
+    path:     /Back/Modifier
+    defaults: { _controller: EventBundle:Evennement:Modifierback }
+evennement_back_supprimer:
+    path:     /Back/Supprimer
+    defaults: { _controller: EventBundle:Evennement:Supprimerback }
+evennement_back_chercher:
+    path:     /Back/Chercher
+    defaults: { _controller: EventBundle:Evennement:Search }
+evennement_back_event:
+    path:     /Back/Event
+    defaults: { _controller: EventBundle:Evennement:Eventback }
+evennement_back_chart:
+    path:     /Back/Chart
+    defaults: { _controller: EventBundle:Evennement:chartLine }
+
+
+evennement_front_afficher:
+    path:     /Front/Afficher
+    defaults: { _controller: EventBundle:Participation:Afficherfront }
+evennement_front_event:
+    path:     /Front/Event
+    defaults: { _controller: EventBundle:Evennement:Eventfront }
+
+
+
+
+
+evennement_back_Show:
+    path:     /Back/Show
+    defaults: { _controller: EventBundle:Participation:Afficherback }
+evennement_back_show:
+    path:     /Back/show
+    defaults: { _controller: EventBundle:Participation:Participation }
+evennement_back_search:
+    path:     /Back/Search
+    defaults: { _controller: EventBundle:Evennement:Search }
+
+
+
+evennement_front_mine:
+    path:     /Front/mine
+    defaults: { _controller: EventBundle:Participation:mine }
+evennement_moyenne:
+    path:     /moyenne
+    defaults: { _controller: EventBundle:Participation:tritt }
+
+evennement_front_ajouter:
+    path:     /Front/Ajouter
+    defaults: { _controller: EventBundle:Participation:AjouterFront }
+evennement_front_modifier:
+    path:     /Front/Modifier
+    defaults: { _controller: EventBundle:Participation:ModifierFront }
+
+
+evennement_participation_rechercher:
+    path:     /participation/rechercher
+    defaults: { _controller: EventBundle:Participation:Recherche }
+
+evennement_participation_supprimer:
+    path:     /Front/Supprimer
+    defaults: { _controller: EventBundle:Participation:Supprimerfront }
+evennement_back_chartt:
+    path:     /Back/Chartt
+    defaults: { _controller: EventBundle:Participation:chartPie }
+evennement_back_chart1:
+    path:     /Back/Chart1
+    defaults: { _controller: EventBundle:Participation:chartLine }
+evennement_back_chart2:
+    path:     /Back/Chart2
+    defaults: { _controller: EventBundle:Participation:chartHistogramme }
+
+

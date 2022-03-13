@@ -1,0 +1,62 @@
+front_sav_homepage:
+    path:     /
+    defaults: { _controller: SavBundle:Default:index }
+
+front_sav_testprod:
+    path:     /testcoment/{id}
+    defaults: { _controller: SavBundle:Default:list }
+
+
+front_reclamation:
+    path:     /Reclamation_front
+    defaults: { _controller: SavBundle:Reclamation:Reclamation_front }
+
+
+
+front_reclamation_ajout:
+    path:     /Reclamation_front/ajout
+    defaults: { _controller: SavBundle:Reclamation:Reclamationajout }
+
+front_reclamation_list:
+    path:     /Reclamation_front/list
+    defaults: { _controller: SavBundle:Reclamation:list }
+
+front_reclamation_supp:
+    path:     /Reclamation_front/supp/{id}
+    defaults: { _controller: SavBundle:Reclamation:suppclaim }
+
+
+front_reclamation_back:
+    path:     /Reclamation_back/list
+    defaults: { _controller: SavBundle:Reclamation_back:list_back }
+
+front_reclamation_back_traiter:
+    path:     /Reclamation_back/triter/{id}
+    defaults: { _controller: SavBundle:Reclamation_back:Reclamation_traiter }
+
+front_reclamation_front_app:
+    path:     /Appointment/ajout
+    defaults: { _controller: SavBundle:Appointment:ajoutapp }
+
+front_reclamation_front_applist:
+    path:     /Appointment/list
+    defaults: { _controller: SavBundle:Appointment:list }
+
+
+appointment_supp:
+    path:     /Appointment/supp/{id}
+    defaults: { _controller: SavBundle:Appointment:suppapp }
+
+appointmentlist_back:
+    path:     /Appointment_back/list
+    defaults: { _controller: SavBundle:Appointment_back:list }
+
+
+appointmentraiter_back:
+    path:     /Appointment_back/traiter/{id}
+    defaults: { _controller: SavBundle:Appointment_back:Appointment_conf }
+
+
+Reclamtion_mail:
+    path:     /Reclamation_back/email/{id}
+    defaults: { _controller: SavBundle:Reclamation_back:Envoyer_mail }

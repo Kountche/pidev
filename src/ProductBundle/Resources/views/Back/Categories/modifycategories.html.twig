@@ -1,0 +1,169 @@
+
+
+{% extends 'base.html.twig' %}
+
+        {% block container %}
+
+
+
+            <!--./row-->
+            <!--.row-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"> With two column</div>
+                        <div class="panel-wrapper collapse in" aria-expanded="true">
+                            <div class="panel-body">
+                                {{ form_start(form) }}
+                                <div class="form-body">
+                                    <h3 class="box-title">Person Info</h3>
+                                    <hr>
+
+                                    <!--/row-->
+                                    <!--/row-->
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group">
+                                                <label>Category Name</label>
+                                                {{ form_widget(form.categoryName, { 'attr': {'class': 'form-control', '': ''} })  }}
+                                                <span class="help-block"> {{ form_errors(form.categoryName) }} </span>
+                                                <span class="help-block" id="sp0">  </span>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Category Description</label>
+                                                {{ form_widget(form.categoryDesc, { 'attr': {'class': 'form-control', '': ''} })  }}
+                                                <span class="help-block"> {{ form_errors(form.categoryDesc) }} </span>
+                                                <span class="help-block" id="sp1">  </span>
+
+
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+
+                                        <div class="form-group">
+                                            <label class="col-sm-12">Upload File</label>
+                                            <div class="col-sm-12">
+                                                <label class="custom-file">
+                                                    {{ form_widget(form.categoryImage, { 'attr': {'class': 'custom-file-input', '': ''} })  }}
+
+                                                    <span class="custom-file-control">{{ form_errors(form.categoryImage) }}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+
+                                </div>
+
+                                <hr>
+
+
+                                <div class="form-actions">
+                                    {{ form_widget(form.Submit, { 'attr': {'class': 'btn btn-success', 'fa fa-check': ''} })  }}
+
+
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+
+
+            <script>
+                $(document).ready(
+
+                    function () {
+
+
+
+                        $("#productbundle_categories_categoryName").keyup(function () {
+                            //  if( (parseInt($(this).val())) )
+                            if( (parseInt($(this).val())) || ($(this).val().length===0) )
+                            {
+                                //alert('Nope');
+                                // console.log(parseInt($(this).val()));
+                                $(this).css({ // on rend le champ rouge
+                                    background: 'pink',
+                                    color: 'white'
+                                });
+                                $("#sp0").text('Check the category name need be characters').show();
+
+
+
+                            }
+                            else {
+                                // console.log(parseInt($(this).val()));
+
+                                $(this).css({ // si tout est bon, on le rend vert
+                                    background: '#80ff80',
+                                    color: 'white'
+                                });
+                                $("#sp0").hide();
+
+
+                            }
+
+                        });
+
+
+
+
+                        $("#productbundle_categories_categoryDesc").keyup(function(){
+                            if( ($(this).val().length<20) || ($(this).val().length===0))
+                            //  if( ()
+
+                            {
+
+                                $(this).css({
+                                    background : 'pink',
+                                    color : 'white'
+                                });
+                                $("#sp1").text('Check description needs minimum length 20 characters').show();
+
+
+                            }
+                            else{
+
+                                $(this).css({ // si tout est bon, on le rend vert
+                                    background : '#80ff80',
+                                    color : 'white'
+                                });
+                                $("#sp1").hide();
+
+
+                            }
+                        });
+
+
+
+                    });
+
+
+            </script>
+
+
+
+
+            <!-- /.right-sidebar -->
+            <!-- /.container-fluid -->
+
+            <!--Style Switcher -->
+
+
+        {% endblock %}

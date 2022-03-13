@@ -1,0 +1,52 @@
+{% extends 'base2.html.twig' %}
+{% block container2 %}
+
+
+    <div class="breadcrumb-area gray-bg">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"> login / Register </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="login-register-area pt-70 pb-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <a class="active" data-toggle="tab" href="#lg1">
+                                <h4> Check your email </h4>
+                            </a>
+
+                        </div>
+                        <div class="tab-content">
+                            <div id="lg1" class="tab-pane active">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <p>
+                                            An email has been sent. It contains a link you must click to reset your password.<br />
+                                            Note: You can only request a new password once within 2 hours.<br />
+                                            <br />
+                                            If you don&#039;t get an email check your spam folder or try again.<br />
+
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

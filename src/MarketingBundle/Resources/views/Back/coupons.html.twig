@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    <ul >
+        <li>
+            <form role="search" class="app-search hidden-xs" method="post" action="{{ path('RechercheCoupon') }}">
+                <input type="text" placeholder="Search..." class="form-control"name="motcle" id="search">
+                <a href=""><i type="submit" class="fa fa-search"></i></a>
+            </form>
+        </li>
+    </ul>
+
+
+
+
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-0">Coupon</h3>
+                <p class="text-muted m-b-30 font-13"> Liste des coupons </p>
+                <div class="btn-group dropdown m-r-10 show open">
+                    <button aria-expanded="true" data-toggle="dropdown" class="btn btn-danger dropdown-toggle waves-effect waves-light" type="button">Filtrer <span class="caret"></span></button>
+                    <ul role="menu" class="dropdown-menu animated flipInY">
+                        <li><a href="{{ path('FiltreASCCoupon') }}">disount ordre croissant</a></li>
+                        <li><a href="{{ path('FiltreDESCCoupon') }}">disount ordre décroissant</a></li>
+                    </ul>
+                </div>
+                <div class="table-responsive">
+                    <table class="table" id="contenu">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Code coupon</th>
+                            <th>Disount</th>
+                            <th class="text-nowrap">Suppression</th>
+                            <th class="text-nowrap">Modification</th>
+                        </tr>
+                        </thead>
+                        {% for c in coupons %}
+                        <tbody>
+                        <tr>
+                            <td>>{{ c.id }}</td>
+                            <td>{{ c.code }} </td>
+                            <td>{{ c.amount }} %</td>
+                            <td class="text-nowrap">
+                                <a href="{{ path('DeleteCoupon',{'id': c.id }) }}"  data-toggle="tooltip" data-original-title="Close"><i class="fa fa-close text-danger"></i> </a></td>
+
+                            <td class="text-nowrap"><a href="{{ path('UpdateCoupon',{'id': c.id }) }}"data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil text-inverse m-r-10"></i> </a></td>
+                            {% endfor %}
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('Back/assets/js/jquery-3.2.1.js') }}"></script>
+    <script>
+        $(document).ready( function() {
+            // déterminer l'index des colonnes les colonnes
+            var colonnes = {};
+            $("#contenu thead th").each(function(index, th)
+                {
+                    colonnes[index] = $(th).text();
+                }
+            );
+
+// faire la recherche dans le tableau
+            $("#search").keyup(function()
+            {
+                var mots = $(this).val().toLowerCase().split(" ");
+                $("#contenu tbody tr").each(function(index, tr)
+                {
+                    if (mots[0].length > 0) $(tr).hide(); else $(tr).show();
+                    $("td", tr).each(function(index, td)
+                    {
+                        if (colonnes[index] in {'Id':true,'Code coupon':true})
+                        {
+                            for (mot in mots)
+                            {
+                                if (mots[mot].length > 0 && $(td).text().toLowerCase().indexOf(mots[mot])>= 0)
+                                {
+                                    $(tr).show();
+                                    return false;
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+{% endblock %}

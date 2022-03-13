@@ -1,0 +1,48 @@
+{% extends 'base2.html.twig' %}
+{% block container2 %}
+
+    <div class="breadcrumb-area gray-bg">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"> Resetting Password </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="login-register-area pt-70 pb-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <a class="active" data-toggle="tab" href="#lg1">
+                                <h4> Reset Password </h4>
+                            </a>
+
+                        </div>
+                        <div class="tab-content">
+                            <div id="lg1" class="tab-pane active">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form  action="/pepiniere/web/app_dev.php/resetting/send-email"
+                                               method="POST" class="fos_user_resetting_request">
+                                            <label for="username">Username or email address</label>
+                                            <input type="text" id="username" name="username" required="required" />
+                                            <div class="button-box">
+                                                <button type="submit" value="Reset password"  ><span>Reset</span></button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

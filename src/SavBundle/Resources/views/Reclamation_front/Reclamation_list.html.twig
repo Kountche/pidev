@@ -1,0 +1,107 @@
+
+{% extends 'base2.html.twig' %}
+{% block container2 %}
+<!-- header start -->
+
+
+
+<div class="breadcrumb-area gray-bg">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"> Claims / List </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- checkout-area start -->
+<div class="checkout-area pb-45 pt-65">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="cart-main-area pt-70 pb-75">
+                <div class="container">
+                    <h3 class="page-title">Your Claims List</h3>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <form action="#">
+                                <input type="text" name="claim_iduser" id="claim_iduser"   hidden value={{app.user.id|default('')}}>
+                                <div class="table-content table-responsive wishlist">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th class="width-1">ID</th>
+                                            <th class="width-2">Product Reference</th>
+                                            <th class="width-3">Description</th>
+                                            <th class="width-4">Date</th>
+                                            <th class="width-5">Etat</th>
+                                            <th class="width-5">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for claim in claim %}
+                                        {% if app.user.id==claim.getClaimIduser()%}
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <p>{{ claim. getClaimsId()}}</p>
+                                            </td>
+                                            <td class="product-name"><p>{{ claim.getClaimProductref() }}</p></td>
+                                            <td class="product-price-cart"><span class="amount"><p>{{ claim.getClaimDesc()}}</p></span></td>
+                                            <td class="product-quantity">
+                                                <div class="pro-dec-cart">
+                                                   <p>{{ claim.getClaimDate|date('d-y-m') }}</p>
+                                                </div>
+                                            </td>
+                                            {% if claim.getClaimEtat()==0 %}
+                                            <td class="product-wishlist-cart">
+                                                <a href="#">Non Traiter</a>
+                                            </td>
+
+                                                <td class="product-wishlist-cart">
+                                                    <a href="{{ path('front_reclamation_supp',{'id':claim.getClaimsId()}) }}">Anuler</a>
+                                                </td>
+                                                {% else %}
+                                                    <td class="product-wishlist-cart">
+                                                        <a href="#">Traiter</a>
+                                                    </td>
+                                                    <td class="product-wishlist-cart">
+                                                        <a href="{{ path('front_reclamation_front_app')}}">Rendez-Vous</a>
+                                                    </td>
+
+
+
+                                                {% endif %}
+
+                                        </tr>
+                                       {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+
+                                    <div class="billing-back">
+                                        <a href="./ajout"><i class="ion-arrow-up-c"></i>Back</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

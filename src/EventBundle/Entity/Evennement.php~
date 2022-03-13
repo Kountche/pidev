@@ -1,0 +1,84 @@
+<?php
+
+namespace EvennementBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Evennement
+ *
+ * @ORM\Table(name="event")
+ * @ORM\Entity(repositoryClass="EvennementBundle\Repository\EvennementRepository")
+ */
+class Evennement
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idEvent", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $idEvent;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date")
+     */
+    private $date;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateFin", type="date")
+     */
+    private $dateFin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lieux", type="string", length=255)
+     */
+    private $lieux;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbPlace", type="integer")
+     */
+    private $nbPlace;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255)
+     */
+    private $photo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+
+
+
+}

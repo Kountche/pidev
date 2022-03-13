@@ -1,0 +1,57 @@
+delivery_homepage:
+    path:     /nothinghere
+    defaults: { _controller: DeliveryBundle:Default:index }
+ajouter_car:
+    path:     /addness
+    defaults: { _controller: DeliveryBundle:Delivery_car:car_ajouter }
+affiche_car:
+    path:     /affiche
+    defaults: { _controller: DeliveryBundle:Delivery_car:affiche }
+delete_car:
+    path:     /delete/{Car_Id}
+    defaults: { _controller: DeliveryBundle:Delivery_car:delete }
+
+Update_car:
+    path:     /update/{Car_Id}
+    defaults: { _controller: DeliveryBundle:Delivery_car:Update }
+
+
+Update_car2:
+    path:     /update2/{Car_Id}
+    defaults: { _controller: DeliveryBundle:Delivery_car:Update2 }
+
+afficherOrder:
+    path:     /order/
+    defaults: { _controller: DeliveryBundle:DeleveryOrder:index }
+
+AjoutOrder:
+    path:     /orderAdd/
+    defaults: { _controller: DeliveryBundle:DeleveryOrder:Order_ajouter }
+
+USerOrder:
+    path:     /UserOrder/
+    defaults: { _controller: DeliveryBundle:DeleveryOrder:OrderUserC }
+
+TransitionOrder:
+    path:     /transistion/{CarId}
+    defaults: { _controller: DeliveryBundle:DeleveryOrder:Transition }
+
+MyOrder:
+    path:     /MyOrder/
+    defaults: { _controller: DeliveryBundle:DeleveryOrder:AfficheMyorder }
+Map:
+    path:     /Map/{long}/{lat}
+    defaults: { _controller: DeliveryBundle:DeleveryOrder:affichermap }
+
+AllOrder:
+    path:     /AllOrderAdmin/
+    defaults: { _controller: DeliveryBundle:DeleveryOrder:AfficheAdminorder }
+EndOrder:
+    path:     /EndOrder/{CarId}/{id}
+    defaults: { _controller: DeliveryBundle:DeleveryOrder:EndOrder }
+rechercher:
+    path:     /search/{type}
+    defaults: { _controller: DeliveryBundle:Delivery_car:rechercherCar }
+pdf:
+    path:     /pdf
+    defaults: { _controller: DeliveryBundle:Delivery_car:pdf }

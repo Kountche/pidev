@@ -1,0 +1,217 @@
+{% extends 'base2.html.twig' %}
+{% block container2 %}
+
+    <!-- header start -->
+
+    <div class="breadcrumb-area gray-bg">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="{{ path('front_product') }}">Home</a></li>
+                    <li class="active">Product Details </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="product-details pt-75 pb-65">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="product-details-img">
+                        <img class="zoompro" src="{{ asset('uploads/images/' ~ product.image ) }}" data-zoom-image="{{ asset('uploads/images/' ~ product.image ) }}" alt="zoom"/>
+                        {% if product.solde.discount==0 %}
+                        {% else %}
+
+                        <span>{{ product.solde.discount }}%</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="product-details-content">
+                        <h2 STYLE="color: #7d0085">{{ product.name }}</h2>
+                        <BR>
+                        <BR>
+                        {%  set prix = product.price - ((product.price* product.solde.discount))/100 %}
+
+                        <span>${{ prix }}</span>
+                        <div class="in-stock">
+                            {% if product.stock == 0 %}
+
+                            <p>Available: <span style="color: red;">Out Stock</span></p>
+                                {% else %}
+
+                                    <p>Available: <span style="color: lawngreen;"> In Stock</span></p>
+
+                            {% endif %}
+                        </div>
+                        <br>
+                        <br>
+                        <h7>Description :  {{ product.shortdesc }} </h7>
+
+                        <div class="quality-add-to-cart">
+                            <div class="quality">
+                                <label>Qty:</label>
+                                <input class="cart-plus-minus-box" type="text" name="qtybutton" >
+                            </div>
+                            <div class="shop-list-cart-wishlist">
+
+                                <a title="Add To Cart" href="{{ path('add_cart2',{'id': product.id }) }}">
+                                    <i class="icon-handbag"></i>
+                                </a>
+                                <a title="Wishlist" href="{{ path('AddWishlist',{'id':product.id}) }}">
+                                    <i class="icon-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="pro-dec-categories">
+                            <ul>
+                                <li class="categories-title" style=" font-size: 18px; color: red;">Categories:</li>
+                                {% for cat in all %}
+                                <li style=" font-size: 15px;"><a href="{{ path('front_productshop' ,{'id': cat.id})  }}">{{ cat.CategoryName }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="pro-dec-categories">
+                            <ul>
+                                <li class="categories-title" style=" font-size: 18px; color: deepskyblue;">Tags: </li>
+                                {% for tag in test %}
+                                <li style=" font-size: 15px;"><a href="{{ path('front_productdetail' ,{'id': tag.id})  }}">{{ tag.name }}</a></li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+
+
+
+
+                        {{ socialButtons( { 'facebook': {'locale':'fr_FR', 'send':true}} ) }}
+
+                        <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) return;
+                                js = d.createElement(s); js.id = id;
+                                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="description-review-area pb-70">
+        <div class="container">
+            <div class="description-review-wrapper">
+                <div class="description-review-topbar nav text-center">
+                    <a class="active" data-toggle="tab" href="#des-details1">Description</a>
+                    <a data-toggle="tab" href="#des-details2">Tags</a>
+                    <a data-toggle="tab" href="#des-details3">Review</a>
+                </div>
+                <div class="tab-content description-review-bottom">
+                    <div id="des-details1" class="tab-pane active">
+                        <div class="product-description-wrapper">
+                            <p>{{ product.longdesc }}</p>
+
+                        </div>
+                    </div>
+                    <div id="des-details2" class="tab-pane">
+                        <div class="product-anotherinfo-wrapper">
+                            <ul>
+                                <li><span>Tags:</span></li>
+                                {% for tag in test %}
+
+                                <li><a href="{{ path('front_productdetail' ,{'id': tag.id})  }}"> {{ tag.name }},</a></li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="des-details3" class="tab-pane">
+                        <div class="rattings-wrapper">
+                            <div class="sin-rattings">
+                                <div class="star-author-all">
+
+                                    <div class="ratting-author f-right">
+                                        <h3></h3>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="ratting-form-wrapper">
+                            <h3>Add your Comments :</h3>
+                            <div class="ratting-form">
+
+
+                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+
+                                    {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': product.id } %}
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-area pb-70">
+        <div class="container">
+            <div class="product-top-bar section-border mb-35">
+                <div class="section-title-wrap">
+                    <h3 class="section-title section-bg-white">Related Products</h3>
+                </div>
+            </div>
+            <div class="featured-product-active hot-flower owl-carousel product-nav">
+                {% for t in test %}
+                    {%  set prix = t.price - ((t.price* t.solde.discount))/100 %}
+
+                    <div class="product-wrapper">
+                    <div class="product-img">
+                        <a href="{{ path('front_productdetail' ,{'id': t.id})  }}">
+                            <img alt="" src="{{ asset('uploads/images/' ~ t.image ) }}">
+                        </a>
+                        {% if t.solde.discount ==0 %}
+                        {% else %}
+                        <span>-{{ t.solde.discount }}%</span>
+                            {% endif %}
+                        <div class="product-action">
+                            <a title="Wishlist" href="{{ path('AddWishlist',{'id':product.id}) }}">
+                                <i class="icon-heart"></i>
+                            </a>
+                            <a class="action-cart" href="{{ path('add_cart',{'id': t.id}) }}" title="Add To Cart">
+                                <i class="icon-handbag"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="product-content text-center">
+                        <h4>
+                            <a href="{{ path('front_productdetail' ,{'id': t.id})  }}">{{ t.name }}</a>
+                        </h4>
+                        <div class="product-price-wrapper">
+                            {% if t.solde.discount==0 %}
+                                <span>${{ t.price }}</span>
+                            {% else %}
+                                <span>${{ prix }}</span>
+                                <span class="product-price-old">${{ t.price }} </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

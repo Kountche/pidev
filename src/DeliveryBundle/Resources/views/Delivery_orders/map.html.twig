@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<input type="hidden" value=10.33 id="long">
+
+
+<input type="hidden" value=35.36 id="lat">
+
+
+
+
+
+<div id="map"></div>
+<script>
+    var map;
+
+    var a =document.getElementById("lat").value;
+    var b = document.getElementById("long").value;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 9.537499, lng: 33.886917},
+            zoom: 2
+
+        });
+
+
+// get les longs et les lats du controlleur
+        var a =document.getElementById("lat").value;
+        var b = document.getElementById("long").value;
+
+        console.log(a);
+        console.log(b);
+        var marker = new google.maps.Marker({
+            position: {lat : parseFloat(a)  , lng : parseFloat(b)},
+            map: map,
+            title: 'Hello World!'
+        });
+
+
+
+
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD527aJXuMR4psjRzTwTg2RmzxL-b7g4iQ&callback=initMap"
+        async defer></script>
+
+</body>
+</html>

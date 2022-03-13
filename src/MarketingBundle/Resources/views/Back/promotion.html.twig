@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    <ul >
+        <li>
+            <form role="search" class="app-search hidden-xs" method="post" action="{{ path('RecherchePromotion') }}">
+                <input type="text" placeholder="Search..." class="form-control"name="motcle" id="search">
+                <a href=""><i type="submit" class="fa fa-search"></i></a>
+            </form>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-0">Promotion</h3>
+                <p class="text-muted m-b-30 font-13"> Liste des Promotions </p>
+
+                <div class="btn-group dropdown m-r-10 show open">
+                    <button aria-expanded="true" data-toggle="dropdown" class="btn btn-danger dropdown-toggle waves-effect waves-light" type="button">Filtrer <span class="caret"></span></button>
+                    <ul role="menu" class="dropdown-menu animated flipInY">
+                        <li><a href="{{ path('FiltreDateASCPromotion') }}">date ordre croissant</a></li>
+                        <li><a href="{{ path('FiltreDateDESCPromotion') }}">date ordre décroissant</a></li>
+                        <li><a href="{{ path('FiltreDiscountASCromotion') }}">pourcentage ordre croissant</a></li>
+                        <li><a href="{{ path('FiltreDiscountDESCromotion') }}">pourcentage ordre décroissant</a></li>
+                    </ul>
+                </div>
+                <div class="table-responsive">
+                    <table class="table" id="contenu">
+                        <thead>
+                        <tr>
+                            <th>Id Promotion</th>
+                            <th>Pourcentage</th>
+                            <th>Date Début</th>
+                            <th>Date Fin</th>
+                            <th class="text-nowrap">Suppression</th>
+                            <th class="text-nowrap">Modification</th>
+                        </tr>
+                        </thead>
+                        {% for p in promotions %}
+                        <tbody>
+                        <tr>
+                            <td >{{ p.id }}</td>
+                            <td>{{ p.discount }}</td>
+                            <td ><span class="text-muted"><i class="fa fa-clock-o"></i> {{ p.dateD|date("m/d/y") }}</span> </td>
+                            <td ><span class="text-muted"><i class="fa fa-clock-o"></i> {{ p.dateF|date("m/d/y") }}</span></td>
+                            <td class="text-nowrap">
+                                <a href="{{ path('DeletePromotions',{'id': p.id }) }}"  data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i> </a></td>
+                            <td class="text-nowrap"><a href="{{ path('UpdatePromotions',{'id': p.id }) }}"data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil text-inverse m-r-10"></i> </a></td>
+                            {% endfor %}
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('Back/assets/js/jquery-3.2.1.js') }}"></script>
+    <script>
+        $(document).ready( function() {
+            // déterminer l'index des colonnes les colonnes
+            var colonnes = {};
+            $("#contenu thead th").each(function(index, th)
+                {
+                    colonnes[index] = $(th).text();
+                }
+            );
+
+// faire la recherche dans le tableau
+            $("#search").keyup(function()
+            {
+                var mots = $(this).val().toLowerCase().split(" ");
+                $("#contenu tbody tr").each(function(index, tr)
+                {
+                    if (mots[0].length > 0) $(tr).hide(); else $(tr).show();
+                    $("td", tr).each(function(index, td)
+                    {
+                        if (colonnes[index] in {'Id Promotion':true,'Pourcentage':true})
+                        {
+                            for (mot in mots)
+                            {
+                                if (mots[mot].length > 0 && $(td).text().toLowerCase().indexOf(mots[mot])>= 0)
+                                {
+                                    $(tr).show();
+                                    return false;
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+
+{% endblock %}
+
+
+

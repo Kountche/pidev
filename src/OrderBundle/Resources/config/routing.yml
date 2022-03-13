@@ -1,0 +1,41 @@
+order_homepage:
+    path:     /noforuse
+    defaults: { _controller: OrderBundle:Default:index }
+cart:
+    path:     /showcart
+    defaults: { _controller: OrderBundle:Order:showcart }
+
+deleting:
+    path:     /deleting
+    defaults: { _controller: OrderBundle:Order:delete }
+clear_cart:
+    path:     /clear
+    defaults: { _controller: OrderBundle:Order:clear }
+edit_cart:
+    path:     /editing
+    defaults: { _controller: OrderBundle:Order:edit }
+edit2_cart:
+    path:     /editing2
+    defaults: { _controller: OrderBundle:Order:edit2 }
+coupon_cart:
+    path:     /coupon
+    defaults: { _controller: OrderBundle:Order:coupon }
+update_cart:
+    path:     /update
+    defaults: { _controller: OrderBundle:Order:update }
+add_cart:
+  path:     /adding
+  defaults: { _controller: OrderBundle:Order:add }
+deleting2:
+    path:     /ajax
+    defaults: { _controller: OrderBundle:Order:ajax }
+points_cart:
+    path: /points
+    defaults: { _controller: OrderBundle:Order:points }
+#iheb edit
+add_cart2:
+  path:     /adding2
+  defaults: { _controller: OrderBundle:Order:add2 }
+eventcomment_cart:
+  path:     /comm
+  defaults: { _controller: OrderBundle:Order:comm }

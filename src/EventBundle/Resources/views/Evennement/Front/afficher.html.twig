@@ -1,0 +1,300 @@
+{% extends "base2.html.twig" %}
+{% block container2  %}
+
+
+
+    <div class="slider-area">
+        <div class="slider-active owl-dot-style owl-carousel">
+            <div class="single-slider pt-175 pb-258 bg-img" style="background-image:url({{ asset('Front/assets/img/slider/ACCUEIL.jpg')}});">
+                <div class="container">
+                    <div class="slider-content slider-animated-1">
+                        <h3 class="animated">New Arrivals</h3>
+                        <h1 class="animated">For Mother’s Day!</h1>
+                        <h5 class="animated">Exclusive Offer -10% Off This Week</h5>
+                        <div class="slider-btn mt-45">
+                            <a class="animated" href="product-details.html">shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-slider pt-175 pb-258 bg-img" style="background-image:url({{ asset('Front/assets/img/slider/758084250-nieuwkuijk-pepiniere-horticulture-exploitation-horticole-jardinier.jpg') }});">
+                <div class="container">
+                    <div class="slider-content slider-animated-2">
+                        <h3 class="animated">New Arrivals</h3>
+                        <h1 class="animated">For Mother’s Day!</h1>
+                        <h5 class="animated">Exclusive Offer -10% Off This Week</h5>
+                        <div class="slider-btn mt-45">
+                            <a class="animated" href="product-details.html">shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-area pt-40 pb-70">
+        <div class="container">
+            <div class="product-top-bar section-border mb-35">
+
+
+                <div class="section-title-wrap">
+                    <h3 class="section-title section-bg-white">Events</h3>
+                </div>
+                <div class="product-tab-list nav section-bg-white">
+                    <a class="active" data-toggle="tab" href="#tab1">
+                        <h4>All </h4>
+                    </a>
+                    <a data-toggle="tab" href="#tab2">
+                        <h4>Music </h4>
+                    </a>
+                    <a data-toggle="tab" href="#tab3">
+                        <h4>Cinema  </h4>
+                    </a>
+                    <a data-toggle="tab" href="#tab4">
+                        <h4>Theatre </h4>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="tab-content jump">
+                <div id="tab1" class="tab-pane active">
+                    <div class="featured-product-active owl-carousel product-nav">
+
+
+                        {% for n in nb %}
+                            <div class="product-wrapper">
+                                <div class="product-img">
+
+                                    <a href="{{ path('evennement_front_event',{'idEvent':n.Evennement}) }}">
+                                        <img src="{{asset( n.photo )}}" width="80" height="220">
+                                    </a>
+
+                                    {% if n.nbPlace-n.id==0  %} <span>Complet</span>  {% endif %}
+
+                                </div>
+                                <div class="product-content text-center">
+                                    <h4>
+                                        <a href="product-details.html">{{ n.nom }}</a>
+                                    </h4>
+                                    {% if n.date==n.dateFin %}
+                                    <span>in {{ n.lieux }} on {{ n.date|date('d-m-y') }}</span><br/><br/>
+
+                                    {% else %}
+                                        <span>in {{ n.lieux }} <br/> From {{ n.date|date('d-m-y') }} to {{ n.dateFin|date('d-m-y') }} </span>
+
+                                    {% endif %}
+
+
+
+                                    {% if is_granted('ROLE_USER')   %}
+
+                                        <div class="slider-btn mt-45">
+                                            <a class="animated" href="{{ path('evennement_front_ajouter',{'idEvent':n.Evennement}) }}">Participate</a>
+                                        </div>
+                                    {% else %}
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+
+                <div id="tab2" class="tab-pane">
+                    <div class="featured-product-active owl-carousel product-nav">
+
+                        {% for n in nb %}
+                            {% if n.type=="Music" %}
+                                <div class="product-wrapper">
+                                    <div class="product-img">
+
+                                        <a href="{{ path('evennement_front_event',{'idEvent':n.Evennement}) }}">
+                                            <img src="{{asset( n.photo )}}" width="80" height="220">
+                                        </a>
+
+                                        {% if n.nbPlace-n.id==0  %} <span>Complet</span>  {% endif %}
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <h4>
+                                            <a href="product-details.html">{{ n.nom }}</a>
+                                        </h4>
+                                        {% if n.date==n.dateFin %}
+                                            <span>in {{ n.lieux }} on {{ n.date|date('d-m-y') }}</span><br/><br/>
+
+                                        {% else %}
+                                            <span>in {{ n.lieux }} <br/> From {{ n.date|date('d-m-y') }} to {{ n.dateFin|date('d-m-y') }} </span>
+
+                                        {% endif %}
+
+
+                                        {% if is_granted('ROLE_USER')   %}
+
+                                            <div class="slider-btn mt-45">
+                                                <a class="animated" href="{{ path('evennement_front_ajouter',{'idEvent':n.Evennement}) }}">Participate</a>
+                                            </div>
+                                        {% else %}
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div id="tab3" class="tab-pane">
+                    <div class="featured-product-active owl-carousel product-nav">
+
+                        {% for n in nb %}
+                            {% if n.type=="Cinema" %}
+                                <div class="product-wrapper">
+                                    <div class="product-img">
+                                        <a href="{{ path('evennement_front_event',{'idEvent':n.Evennement}) }}">
+                                            <img src="{{asset( n.photo )}}" width="80" height="220">
+                                        </a>
+                                        {% if n.nbPlace-n.id==0  %} <span>Complet</span>  {% endif %}
+
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <h4>
+                                            <a href="product-details.html">{{ n.nom }}</a>
+                                        </h4>
+                                        {% if n.date==n.dateFin %}
+                                            <span>in {{ n.lieux }} on {{ n.date|date('d-m-y') }}</span><br/><br/>
+
+                                        {% else %}
+                                            <span>in {{ n.lieux }} <br/> From {{ n.date|date('d-m-y') }} to {{ n.dateFin|date('d-m-y') }} </span>
+
+                                        {% endif %}
+
+                                        {% if is_granted('ROLE_USER')   %}
+
+
+                                        <div class="slider-btn mt-45">
+                                            <a class="animated" href="{{ path('evennement_front_ajouter',{'idEvent':n.Evennement}) }}">Participate</a>
+                                        </div>
+                                        {% else %}
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div id="tab4" class="tab-pane">
+                    <div class="featured-product-active owl-carousel product-nav">
+
+
+
+
+                        {% for n in nb %}
+                            {% if n.type=="Theatre" %}
+                                <div class="product-wrapper">
+                                    <div class="product-img">
+                                        <a href="{{ path('evennement_front_event',{'idEvent':n.Evennement}) }}">
+                                            <img src="{{asset( n.photo )}}" width="80" height="220">
+                                        </a>
+                                        {% if n.nbPlace-n.id==0  %} <span>Complet</span>  {% endif %}
+
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <h4>
+                                            <a href="product-details.html">{{ n.nom }}</a>
+                                        </h4>
+                                        {% if n.date==n.dateFin %}
+                                            <span>in {{ n.lieux }} on {{ n.date|date('d-m-y') }}</span><br/><br/>
+
+                                        {% else %}
+                                            <span>in {{ n.lieux }} <br/> From {{ n.date|date('d-m-y') }} to {{ n.dateFin|date('d-m-y') }} </span>
+
+                                        {% endif %}
+
+                            {% if is_granted('ROLE_USER')   %}
+
+                                        <div class="slider-btn mt-45">
+                                            <a class="animated" href="{{ path('evennement_front_ajouter',{'idEvent':n.Evennement}) }}">Participate</a>
+                                        </div>
+                                        {% else %}
+                            {% endif %}
+
+
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <br/>
+                {% if is_granted('ROLE_USER')   %}
+
+                <center><a href="{{ path('evennement_front_mine') }}">my participations </a></center>
+                {% else %}
+                {% endif %}
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="testimonials-area bg-img pt-120 pb-115" style="background-image:url({{ asset('Front/assets/img/bg/bg-1.jpg')}}); ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto col-12">
+                    <div class="testimonial-active owl-carousel">
+                        <div class="single-testimonial text-center">
+                            <div class="testimonial-img">
+                                <img alt="" src="{{ asset('Front/assets/img/icon-img/testi.png')}}">
+                            </div>
+                            <p>When a beautiful design is combined with powerful technology,<br> it truly is an artwork. I love how my website operates and looks with this theme. <br>Thank you for the awesome product. </p>
+                            <h4>Samia Robiul</h4>
+                        </div>
+                        <div class="single-testimonial text-center">
+                            <div class="testimonial-img">
+                                <img alt="" src="{{ asset('Front/assets/img/icon-img/testi.png')}}">
+                            </div>
+                            <p>“ Lorem ipsum dolor sit, con adipisicing elit, sed do eiusmod tempor <br>incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <br>exercitati ullamco laboris  ” </p>
+                            <h4> Tayeb Rayed</h4>
+                        </div>
+                        <div class="single-testimonial text-center">
+                            <div class="testimonial-img">
+                                <img alt="" src="{{ asset('Front/assets/img/icon-img/testi.png')}}">
+                            </div>
+                            <p>When a beautiful design is combined with powerful ,<br> technology it truly is an artwork. I love how my website operates and looks with this  <br>theme. Thank you for the awesome product. </p>
+                            <h4>Hamim Ahamed</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="new-year-offer-area pb-75">
+        <div class="container">
+            <div class="new-year-offer-wrap pt-70 pb-75 bg-img" style="background-image:url({{  asset('Front/assets/img/banner/banner-4.jpg')}});">
+                <div class="new-year-offer-content text-center">
+                    <h4>New Year Offer</h4>
+                    <h3>Fresh flowers for any special occasion</h3>
+                    <a href="#">Discover now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Modal -->
+
+
+
+
+{% endblock %}
+
+

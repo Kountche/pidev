@@ -1,0 +1,46 @@
+<?php
+
+namespace EvennementBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Participation
+ *
+ * @ORM\Table(name="participation")
+ * @ORM\Entity(repositoryClass="EvennementBundle\Repository\ParticipationRepository")
+ */
+class Participation
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idparticipation", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $idParticipation;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Evennement")
+     * @ORM\JoinColumn(referencedColumnName="idEvent")
+     */
+    private $Evennement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     */
+    private $User;
+
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="note", type="float")
+     */
+    private $note;
+
+
+
+}

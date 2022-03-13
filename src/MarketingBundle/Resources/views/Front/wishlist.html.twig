@@ -1,0 +1,46 @@
+{% extends 'base2.html.twig' %}
+
+{% block container2 %}
+    <div class="cart-main-area pt-70 pb-75">
+        <div class="container">
+            <h3 class="page-title">Your Wishlist items</h3>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <form action="#">
+                        <div class="table-content table-responsive wishlist">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th></th>
+                                    <th>Price</th>
+                                    <th>Remove</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for wish in wishs %}
+                                    <tr>
+
+
+                                        <td class="product-name"><a href="#">{{ wish.product.name }}</a></td>
+                                        <td class="product-thumbnail">
+                                            <a href="{{ path('front_productdetail',{'id':wish.product.id})}}"><div class="product-img"><img src="{{ asset('uploads/images/' ~ wish.product.image ) }}"></div></a>
+                                        </td>
+                                        <td class="product-price-cart"><span class="amount">{{ wish.product.price }} TND</span></td>
+
+                                        <td class="product-wishlist-cart">
+                                            <a href="{{ path('deleteWishliste',{'id':wish.id })}}">remove</a>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

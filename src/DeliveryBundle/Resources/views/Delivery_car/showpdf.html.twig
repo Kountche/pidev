@@ -1,0 +1,30 @@
+<div class="bs-docs-example">
+    <h5>list of cars</h5>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Matricule</th>
+
+            <th>Type</th>
+            <th>Status</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.Matricule }}</td>
+
+
+                <td>{{ car.Type }}</td>
+                <td>{{ car.Status }}</td>
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+

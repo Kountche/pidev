@@ -1,0 +1,149 @@
+{% extends "base.html.twig" %}
+{% block container  %}
+
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Events</h4> </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">  <a href="{{ path('evennement_back_afficher') }}"  class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Show events</a>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="white-box">
+                    <div class="">
+                        <h2 style="color: #8f0000" class="m-b-0 m-t-0">{{ events.nom }}</h2> <small class="text-muted db">#{{ events.idEvent }}</small>
+                        <hr>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="{{asset( events.photo )}}" width="500" height="300" />
+
+                            </div>
+
+
+
+
+
+                            <div class="col-md-6">
+                               <br/><br/> <h3 style="color: #1d5987">
+
+                                    {% if events.date==events.dateFin %}
+                                    <span style="color: #1d5987">On {{ events.date|date('d-m-y') }}</span>
+                                    {% else %}
+                                    <span style="color: #1d5987">From {{ events.date|date('d-m-y') }} to {{ events.dateFin|date('d-m-y') }}</span><br/>
+                                    {% endif %}
+
+                                    <span style="color: #1d5987">in {{ events.lieux }}</span></h3><br/><br/>
+                                <h5><b>Type of event: </b><span style="color: #0A0A0A">{{ events.type }}</span></h5>
+                                <h5><b>Capacity: </b><span style="color: #0A0A0A">{{ events.nbPlace }}</span></h5>
+                               <div style="text-align: center"> {{ socialButtons() }}  </div>
+                          <!--      <h5><b>Availability: </b><span style="color: #0A0A0A"></span></h5> -->
+                            </div>
+
+                        </div>
+
+                        <h4 class="box-title m-t-40">Description of the event</h4>
+                        <p>{{ events.description }}</p>
+
+
+                        <div class="row">
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--row -->
+        <!-- .right-sidebar -->
+        <div class="right-sidebar">
+            <div class="slimscrollright">
+                <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+                <div class="r-panel-body">
+                    <ul>
+                        <li><b>Layout Options</b></li>
+                        <li>
+                            <div class="checkbox checkbox-info">
+                                <input id="checkbox1" type="checkbox" class="fxhdr">
+                                <label for="checkbox1"> Fix Header </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox checkbox-warning">
+                                <input id="checkbox2" type="checkbox" class="fxsdr">
+                                <label for="checkbox2"> Fix Sidebar </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox checkbox-success">
+                                <input id="checkbox4" type="checkbox" class="open-close">
+                                <label for="checkbox4"> Toggle Sidebar </label>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul id="themecolors" class="m-t-20">
+                        <li><b>With Light sidebar</b></li>
+                        <li><a href="javascript:void(0)" theme="default" class="default-theme working">1</a></li>
+                        <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
+                        <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
+                        <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
+                        <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
+                        <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
+                        <li><b>With Dark sidebar</b></li>
+                        <br/>
+                        <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
+                        <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
+                        <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
+                        <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
+                        <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
+                        <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
+                    </ul>
+                    <ul class="m-t-20 chatonline">
+                        <li><b>Chat option</b></li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /.right-sidebar -->
+    </div>
+
+
+
+{% endblock %}

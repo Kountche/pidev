@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <script src="{{ asset('https://code.jquery.com/jquery-1.12.4.js') }}"></script>
+    <script src="{{ asset('Back/assets/js/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ asset('Back/assets/js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('Front/assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('Back/assets/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('Back/assets/js/jquery-3.2.1.js') }}"></script>
+
+</head>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-0">Promotion</h3>
+                <p class="text-muted m-b-30 font-13"> Ajouter Promotion </p>
+                <form  method="post" class="form-horizontal" id="mainForm">
+
+                    <div class="form-group">
+                        <label class="col-md-12">Pourcentage</label>
+                        <div class="col-md-12">
+                            <input type="text" name="discount" class="form-control" placeholder="%" id="discount">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12">Date début</label>
+                        <div class="col-md-12">
+                            <input class="form-control" name="dateD" type="datetime-local" value="2019-03-03T13:00:00" id="dateD">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12">Date fin</label>
+                        <div class="col-md-12">
+                            <input class="form-control" name="dateF" type="datetime-local" value="2019-03-03T13:00:00" id="dateF">
+                        </div>
+                    </div>
+                    <div style="background-color: red">
+                        <p style="color: white">{{Message}}</p>
+
+                    </div>
+                    <button type="submit" value="Ajouter" id="Ajouter" class="btn btn-success waves-effect waves-light m-r-10">Ajouter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        $(function () {
+            $("#Ajouter").click(function () {
+                valid=true;
+                if($(#discount).val()=="0"){
+                    $(#discount).css("border-color","#FF0000");
+                    valid=false;
+                }
+                return valid;
+            });
+        });
+        $().ready(function() {
+            $("#mainForm").validate({
+                rules : {
+                    discount : {
+                        required : true
+                    },
+                    dateD : {
+                        required : true
+                    },
+                    dateF : {
+                        required : true,
+                    }
+                },
+                messages : {
+                    discount : "Veuillez fournir un pourcntage",
+                    dateD : "Veuillez fournir une date",
+                    dateF : "Veuillez fournir une date "
+                }
+            });
+        });
+    </script>
+{% endblock %}

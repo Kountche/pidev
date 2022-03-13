@@ -1,0 +1,73 @@
+
+{% extends "base.html.twig" %}
+{% block container %}
+
+    <br><br><br>
+    <center>
+<h1>Add Car</h1>
+    <form method="post" action={{ path('ajouter_car') }}>
+
+        <table>
+            <tr>
+                <td>
+                    Matricule
+                </td>
+
+                <td>
+                    <input type="text" name="matricule" class="form-control" required>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td>
+                    Type
+                </td>
+
+                <td>
+                    <input type="text" name="type" class="form-control" required>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td>
+                    Status
+                </td>
+
+                <td>
+                    <input type="text" name="Status" class="form-control" required>
+                </td>
+
+
+
+            </tr>
+
+<tr>
+    <td></td>
+    <td>
+        <input type ="submit" value="Add" class="btn btn-block btn-danger">
+    </td>
+</tr>
+
+
+
+
+
+
+
+        </table>
+
+
+
+    </form>
+
+    </center>
+
+
+
+
+{% endblock %}
+

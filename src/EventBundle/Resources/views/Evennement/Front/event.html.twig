@@ -1,0 +1,150 @@
+{% extends "base2.html.twig" %}
+{% block container2  %}
+
+
+    <script src="{{ asset('Front/assets/js/vendor/jquery-1.12.0.min.js')}}"></script>
+
+
+
+    <!-- header start -->
+
+    <div class="product-details pt-75 pb-65">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="product-details-img">
+                        <img src="{{asset( events.photo )}}" width="500"/>
+                        <div id="gallery" class="mt-20 product-dec-slider owl-carousel">
+
+
+                        </div>
+                        {% if  events.nbPlace==0 %}
+                        <span> full </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="product-details-content">
+
+                        <h1 style="color: #8f0000"> {{ events.nom }}  </h1>
+                        <div class="rating-review">
+                            <div class="pro-dec-review">
+                                <ul>
+                                    <li><h3 style="color: #1d5987" >On {{ events.date|date('d-m-y') }}</h3></li>
+                                    <li><h3 style="color: #1d5987" >in {{ events.lieux }} </h3></li>
+                                </ul>
+                                {% if events.date!=events.dateFin %}
+                                <h3 style="color: #1d5987" > to {{ events.dateFin|date('d-m-y') }} </h3>
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+
+                        <div class="in-stock">
+                            <h6><b>Type of event: </b><span style="color: #0A0A0A">{{ events.type }}</span></h6>
+                            <h6><b>Capacity: </b><span>{{ events.nbPlace }}</span></h6>
+
+
+                            <br/><br/><br/>
+
+                        <!--    <h6><b>Availability: </b><span></span></h6> -->
+                           <div>{{ socialButtons() }}</div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="description-review-area pb-70">
+        <div class="container">
+            <div class="description-review-wrapper">
+                <div class="description-review-topbar nav text-center">
+                    <a class="active" data-toggle="tab" href="#des-details1">Description</a>
+                    <a data-toggle="tab" href="#des-details2">Tags</a>
+                    <a data-toggle="tab" href="#des-details3">Review</a>
+                </div>
+                <div class="tab-content description-review-bottom">
+                    <div id="des-details1" class="tab-pane active">
+                        <div class="product-description-wrapper">
+                            <p>{{ events.description }}</p>
+
+                        </div>
+                    </div>
+                    <div id="des-details2" class="tab-pane">
+                        <div class="product-anotherinfo-wrapper">
+                            <ul>
+                                <li><span>Tags:</span></li>
+                                <li><a href="#"> bouquet,</a></li>
+                                <li><a href="#"> event,</a></li>
+                                <li><a href="#"> gift,</a></li>
+                                <li><a href="#"> joy,</a></li>
+                                <li><a href="#"> love ,</a></li>
+                                <li><a href="#"> special</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="des-details3" class="tab-pane">
+                        <div class="rattings-wrapper">
+
+                            <div class="sin-rattings">
+
+                                    <div class="ratting-author f-right">
+                                        <h3>farhana shuvo</h3>
+                                        <span>12:24</span>
+                                        <span>9 March 2018</span>
+                                    </div>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
+                            </div>
+                        </div>
+
+                        <div class="ratting-form-wrapper">
+                            <h3>Add your Comments :</h3>
+                            <div class="ratting-form">
+
+                                <form  method='post' >
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="rating-form-style mb-20">
+                                                <input placeholder="Name" type="text" name="idEvent" id="idEvent" value={{ events.idEvent }} >
+                                                <input placeholder="Name" type="text" name="idc" id="idc" value={{ app.user.id }}>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="rating-form-style mb-20">
+                                                <input placeholder="Email" type="text" name="mail" id="mail">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="rating-form-style form-submit">
+                                                <textarea name="message" placeholder="Message" id="message"></textarea>
+                                                <input type="submit" value="add review" id="comment">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Mirrored from demo.devitems.com/phuler-v4/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Feb 2019 14:40:00 GMT -->
+
+{% endblock %}

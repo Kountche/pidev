@@ -1,0 +1,21 @@
+<h1>challah ti5dim</h1>
+
+<center>
+    <table class="timetable_sub table-responsive">
+
+{% for n in nb %}
+    <tr>
+        <td>{{ n.Evennement }}</td>
+        <td>{{ n.nom }}</td>
+        <td>{{ n.id }}</td>
+        <td>{{ n.type }}</td>
+        <td>{{ n.date|date('d-m-y') }}</td>
+        <td>{{ n.lieux }}</td>
+        <td>{{ n.nbPlace }}</td>
+        <td>{{ n.photo }}</td>
+        <td>{{ n.description }}</td>
+
+    </tr>
+{% endfor %}
+    </table>
+</center>

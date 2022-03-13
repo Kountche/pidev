@@ -1,0 +1,211 @@
+
+
+{% extends 'base.html.twig' %}
+
+        {% block container %}
+
+
+
+        <div class="container-fluid">
+            <div class="row bg-title">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h4 class="page-title">Editable Tables</h4>
+                </div>
+
+
+
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /row -->
+            <!-- /.row -->
+            <!-- .row -->
+
+            <p>
+                <input type="text" name="category" id="search" placeholder="chercher">
+            </p>
+            <div class="row">
+                <div class="col-lg-12">
+
+
+                            <div class="white-box">
+                                <h3 class="box-title">Product Overview</h3>
+                                <div class="table-responsive">
+                                    <table class="table product-overview" id="contenu">
+                                        <thead id="filter">
+
+
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Motif</th>
+                                            <th>Date</th>
+                                            <th>Heure</th>
+                                            <th>Etat</th>
+
+                                        </tr>
+
+                                        </thead>
+                                        <tbody >
+                                        {% for Appointment in Appointment %}
+                                        {% if app.user %}
+                                        <tr>
+                                            <td>{{Appointment.getAppointmentid()}}</td>
+                                            <td>{{Appointment.getAppointmentusername()}}</td>
+                                            <td>{{Appointment.getAppointmentemail()}}</td>
+                                            <td>
+                                                <p>{{ Appointment.getAppointmentmotif()}}</p>
+                                            </td>
+                                            <td>{{ Appointment.getAppointmentdate()|date('d-y-m') }}</td>
+
+                                            <td>
+                                                <span class="label label-success font-weight-100">{{ Appointment.getAppointmenttime() }}</span>
+                                            </td>
+                                            <td>
+                                                {% if Appointment.getAppointmentetat()==1 %}
+                                                <a href="javascript:void(0)" class="text-inverse p-r-10" data-toggle="tooltip" title="Deja Confirmer"><i class="ti-marker-alt"></i>
+                                                    {% else %}
+                                                </a>
+                                                <a href="{{ path('appointmentraiter_back',{'id':Appointment.getAppointmentid()}) }}" data-toggle="tooltip" data-original-title="Confirmer"> <i class="fa fa-close text-danger"></i> </a>
+                                            </td>
+                                                        {% endif %}
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+
+                                    <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+                                    <script>
+                                        $(document).ready( function() {
+                                            // déterminer l'index des colonnes les colonnes
+                                            var colonnes = {};
+                                            $("#contenu thead th").each(function(index, th)
+                                                {
+                                                    colonnes[index] = $(th).text();
+                                                }
+                                            );
+
+// faire la recherche dans le tableau
+                                            $("#search").keyup(function()
+                                            {
+                                                var mots = $(this).val().toLowerCase().split(" ");
+                                                $("#contenu tbody tr").each(function(index, tr)
+                                                {
+                                                    if (mots[0].length > 0) $(tr).hide(); else $(tr).show();
+                                                    $("td", tr).each(function(index, td)
+                                                    {
+                                                        if (colonnes[index] in {'ID':true,'NAME':true,'EMAIL':true})
+                                                        {
+                                                            for (mot in mots)
+                                                            {
+                                                                if (mots[mot].length > 0 && $(td).text().toLowerCase().indexOf(mots[mot])>= 0)
+                                                                {
+                                                                    $(tr).show();
+                                                                    return false;
+                                                                }
+                                                            }
+                                                        }
+                                                    });
+                                                });
+                                            });
+
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+
+
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- .row -->
+
+            <!-- /.row -->
+            <!-- .row -->
+
+            <!-- /.row -->
+            <!-- .right-sidebar -->
+            <div class="right-sidebar">
+                <div class="slimscrollright">
+                    <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+                    <div class="r-panel-body">
+                        <ul>
+                            <li><b>Layout Options</b></li>
+                            <li>
+                                <div class="checkbox checkbox-info">
+                                    <input id="checkbox1" type="checkbox" class="fxhdr">
+                                    <label for="checkbox1"> Fix Header </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="checkbox checkbox-warning">
+                                    <input id="checkbox2" type="checkbox" checked="" class="fxsdr">
+                                    <label for="checkbox2"> Fix Sidebar </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="checkbox checkbox-success">
+                                    <input id="checkbox4" type="checkbox" class="open-close">
+                                    <label for="checkbox4"> Toggle Sidebar </label>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="themecolors" class="m-t-20">
+                            <li><b>With Light sidebar</b></li>
+                            <li><a href="javascript:void(0)" theme="default" class="default-theme working">1</a></li>
+                            <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
+                            <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
+                            <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
+                            <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
+                            <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
+                            <li><b>With Dark sidebar</b></li>
+                            <br/>
+                            <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
+                            <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
+                            <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
+                            <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
+                            <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
+                            <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
+                        </ul>
+                        <ul class="m-t-20 chatonline">
+                            <li><b>Chat option</b></li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="{{ asset('Back/assets/plugins/images/users/varun.jpg')}}" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="{{ asset('Back/assets/plugins/images/users/genu.jpg')}}" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="{{ asset('Back/assets/plugins/images/users/ritesh.jpg')}}" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="{{ asset('Back/assets/plugins/images/users/arijit.jpg')}}" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="{{ asset('Back/assets/plugins/images/users/govinda.jpg')}}" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="{{ asset('Back/assets/plugins/images/users/hritik.jpg')}}" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="{{ asset('Back/assets/plugins/images/users/john.jpg')}}" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="{{ asset('Back/assets/plugins/images/users/pawandeep.jpg')}}" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /.right-sidebar -->
+
+
+
+
+
+
+        {% endblock %}

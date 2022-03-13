@@ -1,0 +1,467 @@
+
+
+{% extends 'base.html.twig' %}
+
+        {% block container %}
+
+
+
+            <!--./row-->
+            <!--.row-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"> With two column</div>
+                        <div class="panel-wrapper collapse in" aria-expanded="true">
+                            <div class="panel-body">
+
+
+                                {{ form_start(form) }}
+                                    <div class="form-body">
+                                        <h3 class="box-title">Person Info</h3>
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+
+                                                    <label class="control-label">Product reference</label>
+
+                                                    {{ form_widget(form.sku, { 'attr': {'class': 'form-control', '': ''} })  }}
+
+
+                                                    <span class="help-block">  {{ form_errors(form.sku) }}</span>
+                                                    <span class="help-block" id="sp0">  </span>
+
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Product Name</label>
+                                                    {{ form_widget(form.name, { 'attr': {'class': 'form-control', '': ''} })  }}
+
+                                                    <span class="help-block" > {{ form_errors(form.name) }}</span>
+                                                    <span class="help-block" id="sp1" > </span>
+
+                                                </div>
+                                            <!--/span-->
+                                        </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+
+                                                    <label>Post Status</label>
+                                                    {{ form_widget(form.status, { 'attr': {'class': 'form-control', '': ''} })  }}
+
+                                                    <span class="help-block"> {{ form_errors(form.status) }} </span>
+
+                                            </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Date</label>
+
+
+                                                    {{ form_widget(form.date, { 'attr': {'class': 'form-control', '': ''} })  }}
+
+                                                    <span class="help-block"> {{ form_errors(form.date) }} </span>
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Product Category</label>
+                                                    {{ form_widget(form.category, { 'attr': {'class': 'form-control', '': ''} })  }}
+
+
+                                                    <span class="help-block"> {{ form_errors(form.category) }} </span>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Stock</label>
+                                                    <div class="input-group">
+                                                        {{ form_widget(form.stock, { 'attr': {'class': 'form-control', '': ''} })  }}
+
+                                                        <div class="input-group-addon"><i class="">Pieces</i></div>
+                                                    </div>
+                                                    <span class="help-block"> {{ form_errors(form.stock) }} </span>
+                                                    <span class="help-block" id="sp2">  </span>
+
+
+                                                </div>
+
+                                        </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Discount</label>
+
+                                                    {{ form_widget(form.solde, { 'attr': {'class': 'form-control', '': ''} })  }}
+                                                    <span class="help-block"> {{ form_errors(form.solde) }} </span>
+
+                                                    <div class="panel panel-primary block6">
+                                                        <div class="panel-heading" id="hello3" style="background-color: red;">
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Product Price</label>
+
+                                                    <div class="input-group">
+                                                        {{ form_widget(form.price, { 'attr': {'class': 'form-control', '': ''} })  }}
+
+                                                        <div class="input-group-addon"><i class="">$</i></div>
+                                                    </div>
+                                                    <span class="help-block"> {{ form_errors(form.price) }} </span>
+
+
+                                                    <div class="panel panel-info block4">
+                                                        <div class="panel-heading" id="hello2">
+                                                        </div>
+                                                        <span class="help-block" id="sp3">  </span>
+
+
+                                                    </div>
+
+
+
+                                                </div>
+
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-12 ">
+                                                <div class="form-group">
+                                                    <label>Long Description</label>
+                                                    {{ form_widget(form.longdesc, { 'attr': {'class': 'form-control', '': ''} })  }}
+                                                    <span class="help-block"> {{ form_errors(form.longdesc) }} </span>
+                                                    <span class="help-block" id="sp4">  </span>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Short Description</label>
+                                                    {{ form_widget(form.shortdesc, { 'attr': {'class': 'form-control', '': ''} })  }}
+                                                    <span class="help-block"> {{ form_errors(form.shortdesc) }} </span>
+                                                    <span class="help-block" id="sp5">  </span>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-12">Upload File</label>
+                                                    <div class="col-sm-12">
+                                                        <label class="custom-file">
+                                                            {{ form_widget(form.image, { 'attr': {'class': 'custom-file-input', '': ''} })  }}
+
+                                                            <span class="custom-file-control">{{ form_errors(form.image) }} </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <!--/span-->
+
+                                            <!--/span-->
+                                        </div>
+
+                                        <!--/row-->
+
+                                    </div>
+
+                                    <hr>
+
+
+
+
+                                    <div class="form-actions">
+
+
+                                        {{ form_widget(form.recaptcha, { 'attr': {'class': 'btn btn-success'} })  }}
+                                        <br>
+                                        <br>
+                                        {{ form_widget(form.Submit, { 'attr': {'class': 'btn btn-success', 'fa fa-check': ''} })  }}
+
+
+                                    </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+            <script>
+                $(document).ready(
+
+                    function () {
+                        $("#hello2,#hello3").hide();
+                    $("#productbundle_products_price,#productbundle_products_solde").keyup(function () {
+                        const content = parseInt($("#productbundle_products_price").val());
+                      //  const content2= $("#productbundle_products_solde").val();
+                       const select =parseInt($( "#productbundle_products_solde option:selected" ).text());
+
+                       const price= content-(content*select)/100;
+
+
+                        //   const  content2 =  $( "#productbundle_products_solde option:selected" ).text();
+
+                          $('#hello2').text("The New price is  "+price.toFixed(2)+'$').show();
+                          $('#hello3').text("The Old price is  "+content.toFixed(2)+'$').show();
+
+                          if(isNaN(content))
+                          {
+                              $("#hello2,#hello3").hide();
+
+                          }
+
+                        // $('#productbundle_products_price').contents().find('#productbundle_products_price').html('Hey, i`ve changed content of <body>! Yay!!!');
+
+
+                    })
+                })
+
+            </script>
+
+
+            <script>
+                $(document).ready(
+
+                    function () {
+
+                        var $sku = $('#productbundle_products_sku'),
+                            $name = $('#productbundle_products_name'),
+                            $longdesc = $('#productbundle_products_longdesc'),
+                            $shortdesc = $('#productbundle_products_shortdesc'),
+                            $stock = $('#productbundle_products_stock'),
+                            $price = $('#productbundle_products_price');
+
+                        $regsku=new RegExp("[a-zA-Z0-9]");
+
+
+
+
+                    $("#productbundle_products_sku").keyup(function () {
+                        //  if( (parseInt($(this).val())) )
+                        if ($.isNumeric($(this).val()) || ($(this).val().length === 0)) { // si la chaîne de caractères est inférieure à 5
+                            //alert('Nope');
+                           // console.log(parseInt($(this).val()));
+                            $(this).css({ // on rend le champ rouge
+                                background: 'pink',
+                                color: 'white'
+                            });
+                            $("#sp0").text('Check the Reference need be characters and numbers').show();
+
+
+
+                        }
+                        else {
+                           // console.log(parseInt($(this).val()));
+
+                            $(this).css({ // si tout est bon, on le rend vert
+                                background: '#80ff80',
+                                color: 'white'
+                            });
+                            $("#sp0").hide();
+
+
+                        }
+
+                    });
+
+
+
+
+
+
+
+
+
+
+                        $("#productbundle_products_name").keyup(function(){
+                              if( (parseInt($(this).val())) || ($(this).val().length===0) )
+
+                            { // si la chaîne de caractères est inférieure à 5
+                                //console.log((typeof($(this).val())));
+                                //console.log(parseInt($(this).val()));
+
+                                $(this).css({ // on rend le champ rouge
+                                    background : 'pink',
+                                    color : 'white'
+                                });
+
+                                $("#sp1").text('Check the name need be characters').show();
+                               // console.log(test1());
+                            }
+                            else{
+
+                                $(this).css({ // si tout est bon, on le rend vert
+                                    background : '#80ff80',
+                                    color : 'white'
+                                });
+                                  $("#sp1").hide();
+
+
+                              }
+                        });
+
+                        $("#productbundle_products_stock").keyup(function(){
+                            if(( parseInt($(this).val())<= 0   ) || ($(this).val().length===0))
+                            //  if( ()
+
+                            { // si la chaîne de caractères est inférieure à 5
+                                //console.log((typeof($(this).val())));
+                                //console.log(parseInt($(this).val()));
+
+                                $(this).css({ // on rend le champ rouge
+                                    background : 'pink',
+                                    color : 'white'
+                                });
+                                $("#sp2").text('Check the stock needs be not null and positif').show();
+
+
+                            }
+                            else{
+
+                                $(this).css({ // si tout est bon, on le rend vert
+                                    background : '#80ff80',
+                                    color : 'white'
+                                });
+                                $("#sp2").hide();
+
+
+                            }
+                        });
+
+                        $("#productbundle_products_price").keyup(function(){
+                            if(( parseInt($(this).val())<= 0  ) || ($(this).val().length===0))
+
+                            { // si la chaîne de caractères est inférieure à 5
+                                //console.log((typeof($(this).val())));
+                                //console.log(parseInt($(this).val()));
+
+                                $(this).css({ // on rend le champ rouge
+                                    background : 'pink',
+                                    color : 'white'
+                                });
+                                $("#sp3").text('Check the price needs be not null and positif').show();
+
+
+                            }
+                            else{
+
+                                $(this).css({ // si tout est bon, on le rend vert
+                                    background : '#80ff80',
+                                    color : 'white'
+                                });
+                                $("#sp3").hide();
+
+
+                            }
+                        });
+
+                        $("#productbundle_products_longdesc").keyup(function(){
+                            if( ($(this).val().length<20) || ($(this).val().length===0))
+
+                            { // si la chaîne de caractères est inférieure à 5
+                                //console.log((typeof($(this).val())));
+                                //console.log(parseInt($(this).val()));
+
+                                $(this).css({ // on rend le champ rouge
+                                    background : 'pink',
+                                    color : 'white'
+                                });
+                                $("#sp4").text('Check long description needs minimum length 20 characters').show();
+
+                            }
+                            else{
+
+                                $(this).css({ // si tout est bon, on le rend vert
+                                    background : '#80ff80',
+                                    color : 'white'
+                                });
+                                $("#sp4").hide();
+
+                            }
+                        });
+
+                        $("#productbundle_products_shortdesc").keyup(function(){
+                            if( ($(this).val().length===0) ||($(this).val().length<10))
+
+                            { // si la chaîne de caractères est inférieure à 5
+                                //console.log((typeof($(this).val())));
+                                //console.log(parseInt($(this).val()));
+
+                                $(this).css({ // on rend le champ rouge
+                                    background : 'pink',
+                                    color : 'white'
+                                });
+                                $("#sp5").text('Check long description needs minimum length 10 characters').show();
+
+                            }
+                            else{
+
+                                $(this).css({ // si tout est bon, on le rend vert
+                                    background : '#80ff80',
+                                    color : 'white'
+                                });
+                                $("#sp5").hide();
+
+                            }
+                        });
+
+
+                    });
+
+
+            </script>
+
+
+
+            <!-- /.right-sidebar -->
+            <!-- /.container-fluid -->
+
+            <!--Style Switcher -->
+
+
+        {% endblock %}
+
+{% block style2 %}
+
+
+{% endblock %}

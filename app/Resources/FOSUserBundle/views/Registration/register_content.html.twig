@@ -1,0 +1,70 @@
+{% extends 'base2.html.twig' %}
+{% block container2 %}
+    <div class="breadcrumb-area gray-bg">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"> login / Register </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="login-register-area pt-70 pb-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <a class="active" data-toggle="tab" href="#lg1">
+                                <h4> Register </h4>
+                            </a>
+
+                        </div>
+                        <div class="tab-content">
+                            <div id="lg1" class="tab-pane active">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form  name="fos_user_registration_form" method="post"
+                                               action="{{ path('fos_user_registration_register') }}"
+                                               class="fos_user_registration_register">
+
+                                            {% if app.user %}
+
+
+                                                <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+
+
+                                            {% endif %}
+                                            {{ form_row(form.email) }}
+                                            {{ form_row(form.username) }}
+                                            {{ form_row(form.firstName) }}
+                                            {{ form_row(form.lastName) }}
+                                            {{ form_row(form.city) }}
+                                            {{ form_row(form.phone) }}
+                                            {{ form_row(form.dateOfBirth) }}
+
+
+
+
+
+
+                                            {{ form_row(form.plainPassword) }}
+                                            {{ form_row(form._token) }}
+
+                                            <div class="button-box">
+                                                <button type="submit" value="Register" ><span>Register</span></button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

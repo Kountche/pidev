@@ -1,0 +1,63 @@
+product_homepage:
+    path:     /Nouserd
+    defaults: { _controller: ProductBundle:Default:index }
+product_add:
+    path:     /add
+    defaults: { _controller: ProductBundle:Product:add }
+product_delete:
+    path:     /delete
+    defaults: { _controller: ProductBundle:Product:delete }
+product_list:
+    path:     /list
+    defaults: { _controller: ProductBundle:Product:list }
+product_modify:
+    path:     /modify
+    defaults: { _controller: ProductBundle:Product:modify }
+
+product_edit:
+    path:     /show
+    defaults: { _controller: ProductBundle:Product:show }
+product_stat:
+    path:     /productstat
+    defaults: { _controller: ProductBundle:Product:Statproduct }
+
+categorie_add:
+    path:     /categorieadd
+    defaults: { _controller: ProductBundle:Categories:add }
+categorie_list:
+    path:     /categoriealist
+    defaults: { _controller: ProductBundle:Categories:list }
+categorie_modify:
+    path:     /categorieamodify
+    defaults: { _controller: ProductBundle:Categories:modify }
+categorie_delete:
+    path:     /categoriedelete
+    defaults: { _controller: ProductBundle:Categories:delete }
+show_edit:
+    path:     /showcategorie
+    defaults: { _controller: ProductBundle:Categories:show }
+front_product:
+    path:     /
+    defaults: { _controller: ProductBundle:Product:showFront }
+front_productdetail:
+    path:     /frontshowproductdetail/{id}
+    defaults: { _controller: ProductBundle:Product:showSingleProduct }
+front_productshop:
+    path:     /shopproduct
+    defaults: { _controller: ProductBundle:Product:shopProduct }
+
+categorie_stat:
+    path:     /cateogiestat
+    defaults: { _controller: ProductBundle:Categories:statcategoriescalendar }
+categorie_harstat:
+    path:     /categoriesstatbar
+    defaults: { _controller: ProductBundle:Categories:statcat }
+List2_products:
+    path:     /listprod
+    defaults: { _controller: ProductBundle:Product:List2 }
+List2_categories:
+    path:     /listcat
+    defaults: { _controller: ProductBundle:Categories:List2 }
+
+
+

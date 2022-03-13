@@ -1,0 +1,739 @@
+{% extends 'base2.html.twig' %}
+{% block container2 %}
+
+
+    <div class="breadcrumb-area gray-bg">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="{{ path('front_product') }}">Home</a></li>
+                    <li class="active">Shop Grid Style </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="shop-page-area pt-75 pb-75">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9">
+                    <div class="banner-area pb-30">
+                        <a href="product-details.html"><img alt="" src="{{ asset('Front/assets/img/banner/banner-49.jpg') }}"></a>
+                    </div>
+                    <div class="shop-topbar-wrapper">
+                        <div class="shop-topbar-left">
+                            <ul class="view-mode">
+                                <li class="active"><a href="#product-grid" data-view="product-grid"><i class="fa fa-th"></i></a></li>
+                                <li><a href="#product-list" data-view="product-list"><i class="fa fa-list-ul"></i></a></li>
+                            </ul>
+                        </div>
+                        <form  method="post">
+
+                        <div class="product-sorting-wrapper">
+                            <div class="product-shorting shorting-style">
+                                <label>View:</label>
+                                <select id="options2">
+                                    <option value="">2</option>
+                                    <option value="">4</option>
+                                    <option value="">6</option>
+                                </select>
+                            </div>
+                            <div class="product-show shorting-style">
+                                <label>Sort by:</label>
+                                <select id="options">
+                                    <option value="desc">Price Descending</option>
+                                    <option value="asc">Price Ascending</option>
+                                    <option value="pdesc">Name A-Z</option>
+                                    <option value="pasc">Name Z-A</option>
+                                </select>
+                            </div>
+
+
+
+
+                    </div>
+
+                        </form>
+
+                    </div>
+                    <div class="grid-list-product-wrapper">
+                        <div class="product-grid product-view pb-20">
+                            <div  class="row" id="row1" >
+                                {% for c in categories %}
+                                    {%  set prix = c.price - ((c.price* c.solde.discount))/100 %}
+
+                                    <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30">
+                                    <div class="product-wrapper">
+                                        <div class="product-img">
+                                            <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">
+                                                <img alt="" src="{{ asset('uploads/images/' ~ c.image ) }}">
+                                            </a>
+                                            {% if c.solde.discount==0 %}
+                                            {% else %}
+                                            <span>-{{ c.solde.discount }}%</span>
+                                                {% endif %}
+                                            <div class="product-action">
+                                                <a class="action-wishlist" href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist">
+                                                    <i class="icon-heart"></i>
+                                                </a>
+                                                <a class="action-cart" href="#" title="Add To Cart">
+                                                    <i class="icon-handbag"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="product-content text-center">
+                                            <h4>
+                                                <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                            </h4>
+                                            <div class="product-price-wrapper">
+                                                {% if c.solde.discount==0 %}
+                                                <span>${{ c.price }}</span>
+                                                  {% else %}
+                                                <span>${{ prix }}</span>
+                                                <span class="product-price-old">${{ c.price }} </span>
+                                                  {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="product-list-details">
+                                            <h4>
+                                                <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                            </h4>
+                                            <div class="product-price-wrapper">
+                                                {% if c.solde.discount==0 %}
+                                                    <span>${{ c.price }}</span>
+                                                {% else %}
+                                                    <span>${{ prix }}</span>
+                                                    <span class="product-price-old">${{ c.price }} </span>
+                                                {% endif %}
+                                            </div>
+                                            <p>{{ c.shortdesc }}</p>
+                                            <div class="shop-list-cart-wishlist">
+                                                <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist"><i class="icon-heart"></i></a>
+                                                <a href="#" title="Add To Cart"><i class="icon-handbag"></i></a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                            <div  class="row" id="row2">
+                                {% for c in categories2 %}
+                                    {%  set prix = c.price - ((c.price* c.solde.discount))/100 %}
+
+                                    <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30">
+                                        <div class="product-wrapper">
+                                            <div class="product-img">
+                                                <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">
+                                                    <img alt="" src="{{ asset('uploads/images/' ~ c.image ) }}">
+                                                </a>
+                                                {% if c.solde.discount==0 %}
+                                                {% else %}
+                                                    <span>-{{ c.solde.discount }}%</span>
+                                                {% endif %}
+                                                <div class="product-action">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist"><i class="icon-heart"></i></a>
+
+                                                    <a class="action-cart" href="#" title="Add To Cart">
+                                                        <i class="icon-handbag"></i>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                            <div class="product-content text-center">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="product-list-details">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                                <p>{{ c.shortdesc }}</p>
+                                                <div class="shop-list-cart-wishlist">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist"><i class="icon-heart"></i></a>
+                                                    <a href="#" title="Add To Cart"><i class="icon-handbag"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                            <div  class="row" id="row3">
+                                {% for c in categorie3 %}
+                                    {%  set prix = c.price - ((c.price* c.solde.discount))/100 %}
+
+                                    <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30">
+                                        <div class="product-wrapper">
+                                            <div class="product-img">
+                                                <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">
+                                                    <img alt="" src="{{ asset('uploads/images/' ~ c.image ) }}">
+                                                </a>
+                                                {% if c.solde.discount==0 %}
+                                                {% else %}
+                                                    <span>-{{ c.solde.discount }}%</span>
+                                                {% endif %}
+                                                <div class="product-action">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist">
+                                                        <i class="icon-heart"></i>
+                                                    </a>
+                                                    <a class="action-cart" href="#" title="Add To Cart">
+                                                        <i class="icon-handbag"></i>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                            <div class="product-content text-center">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="product-list-details">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                                <p>{{ c.shortdesc }}</p>
+                                                <div class="shop-list-cart-wishlist">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist"><i class="icon-heart"></i></a>
+                                                    <a href="#" title="Add To Cart"><i class="icon-handbag"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                            <div  class="row" id="row4">
+                                {% for c in categorie4 %}
+                                    {%  set prix = c.price - ((c.price* c.solde.discount))/100 %}
+
+                                    <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30">
+                                        <div class="product-wrapper">
+                                            <div class="product-img">
+                                                <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">
+                                                    <img alt="" src="{{ asset('uploads/images/' ~ c.image ) }}">
+                                                </a>
+                                                {% if c.solde.discount==0 %}
+                                                {% else %}
+                                                    <span>-{{ c.solde.discount }}%</span>
+                                                {% endif %}
+                                                <div class="product-action">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist">
+                                                        <i class="icon-heart"></i>
+                                                    </a>
+                                                    <a class="action-cart" href="#" title="Add To Cart">
+                                                        <i class="icon-handbag"></i>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                            <div class="product-content text-center">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="product-list-details">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                                <p>{{ c.shortdesc }}</p>
+                                                <div class="shop-list-cart-wishlist">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist"><i class="icon-heart"></i></a>
+                                                    <a href="#" title="Add To Cart"><i class="icon-handbag"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                            <div  class="row" id="row5">
+                                {% for c in categorie5 %}
+                                    {%  set prix = c.price - ((c.price* c.solde.discount))/100 %}
+
+                                    <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30">
+                                        <div class="product-wrapper">
+                                            <div class="product-img">
+                                                <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">
+                                                    <img alt="" src="{{ asset('uploads/images/' ~ c.image ) }}">
+                                                </a>
+                                                {% if c.solde.discount==0 %}
+                                                {% else %}
+                                                    <span>-{{ c.solde.discount }}%</span>
+                                                {% endif %}
+                                                <div class="product-action">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist">
+                                                        <i class="icon-heart"></i>
+                                                    </a>
+                                                    <a class="action-cart" href="#" title="Add To Cart">
+                                                        <i class="icon-handbag"></i>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                            <div class="product-content text-center">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="product-list-details">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                                <p>{{ c.shortdesc }}</p>
+                                                <div class="shop-list-cart-wishlist">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist"><i class="icon-heart"></i></a>
+                                                    <a href="#" title="Add To Cart"><i class="icon-handbag"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <div  class="row" id="two">
+                                {% for c in two %}
+                                    {%  set prix = c.price - ((c.price* c.solde.discount))/100 %}
+
+                                    <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30">
+                                        <div class="product-wrapper">
+                                            <div class="product-img">
+                                                <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">
+                                                    <img alt="" src="{{ asset('uploads/images/' ~ c.image ) }}">
+                                                </a>
+                                                {% if c.solde.discount==0 %}
+                                                {% else %}
+                                                    <span>-{{ c.solde.discount }}%</span>
+                                                {% endif %}
+                                                <div class="product-action">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist">
+                                                        <i class="icon-heart"></i>
+                                                    </a>
+                                                    <a class="action-cart" href="#" title="Add To Cart">
+                                                        <i class="icon-handbag"></i>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                            <div class="product-content text-center">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="product-list-details">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                                <p>{{ c.shortdesc }}</p>
+                                                <div class="shop-list-cart-wishlist">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist"><i class="icon-heart"></i></a>
+                                                    <a href="#" title="Add To Cart"><i class="icon-handbag"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                            <div  class="row" id="four">
+                                {% for c in four %}
+                                    {%  set prix = c.price - ((c.price* c.solde.discount))/100 %}
+
+                                    <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30">
+                                        <div class="product-wrapper">
+                                            <div class="product-img">
+                                                <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">
+                                                    <img alt="" src="{{ asset('uploads/images/' ~ c.image ) }}">
+                                                </a>
+                                                {% if c.solde.discount==0 %}
+                                                {% else %}
+                                                    <span>-{{ c.solde.discount }}%</span>
+                                                {% endif %}
+                                                <div class="product-action">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist">
+                                                        <i class="icon-heart"></i>
+                                                    </a>
+                                                    <a class="action-cart" href="#" title="Add To Cart">
+                                                        <i class="icon-handbag"></i>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                            <div class="product-content text-center">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="product-list-details">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                                <p>{{ c.shortdesc }}</p>
+                                                <div class="shop-list-cart-wishlist">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist"><i class="icon-heart"></i></a>
+                                                    <a href="#" title="Add To Cart"><i class="icon-handbag"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                            <div  class="row" id="six">
+                                {% for c in six %}
+                                    {%  set prix = c.price - ((c.price* c.solde.discount))/100 %}
+
+                                    <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30">
+                                        <div class="product-wrapper">
+                                            <div class="product-img">
+                                                <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">
+                                                    <img alt="" src="{{ asset('uploads/images/' ~ c.image ) }}">
+                                                </a>
+                                                {% if c.solde.discount==0 %}
+                                                {% else %}
+                                                    <span>-{{ c.solde.discount }}%</span>
+                                                {% endif %}
+                                                <div class="product-action">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist">
+                                                        <i class="icon-heart"></i>
+                                                    </a>
+                                                    <a class="action-cart" href="#" title="Add To Cart">
+                                                        <i class="icon-handbag"></i>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                            <div class="product-content text-center">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="product-list-details">
+                                                <h4>
+                                                    <a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                    {% if c.solde.discount==0 %}
+                                                        <span>${{ c.price }}</span>
+                                                    {% else %}
+                                                        <span>${{ prix }}</span>
+                                                        <span class="product-price-old">${{ c.price }} </span>
+                                                    {% endif %}
+                                                </div>
+                                                <p>{{ c.shortdesc }}</p>
+                                                <div class="shop-list-cart-wishlist">
+                                                    <a href="{{ path('AddWishlist',{'id':c.id}) }}" title="Wishlist"><i class="icon-heart"></i></a>
+                                                    <a href="#" title="Add To Cart"><i class="icon-handbag"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+                        <div class="pagination-total-pages">
+                            <div class="pagination-style">
+                                <ul>
+                                    <div class="navigation">
+                                        {{ knp_pagination_render(categories) }}
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="total-pages">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="shop-sidebar-wrapper gray-bg-7 shop-sidebar-mrg">
+                        <div class="shop-widget">
+                            <h4 class="shop-sidebar-title">Shop By Categories</h4>
+                            <div class="shop-catigory">
+                                <ul id="faq">
+                                    <li> <a data-toggle="collapse" data-parent="#faq" href="#shop-catigory-1">Grimpante<i class="ion-ios-arrow-down"></i></a>
+                                        <ul id="shop-catigory-1" class="panel-collapse collapse show">
+                                            {% for a in gim %}
+                                                {% if a.status=='Published' %}
+                                            <li><a href="{{ path('front_productdetail' ,{'id': a.id})  }}">{{ a.name }}</a></li>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </ul>
+                                    </li>
+                                    <li> <a data-toggle="collapse" data-parent="#faq" href="#shop-catigory-2">Fruitiers<i class="ion-ios-arrow-down"></i></a>
+                                        <ul id="shop-catigory-2" class="panel-collapse collapse">
+                                            {% for a in fr %}
+                                            {% if a.status=='Published' %}
+                                            <li><a href="{{ path('front_productdetail' ,{'id': a.id})  }}">{{ a.name }}</a></li>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                        </ul>
+                                    </li>
+                                    <li> <a data-toggle="collapse" data-parent="#faq" href="#shop-catigory-3">Bambous<i class="ion-ios-arrow-down"></i></a>
+                                        <ul id="shop-catigory-3" class="panel-collapse collapse">
+                                            {% for a in bam %}
+                                            {% if a.status=='Published' %}
+                                            <li><a href="{{ path('front_productdetail' ,{'id': a.id})  }}">{{ a.name }}</a></li>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                        </ul>
+                                    </li>
+
+
+                                </ul>
+
+
+
+                            </div>
+
+                        </div>
+                        <div class="shop-price-filter mt-40 shop-sidebar-border pt-35">
+                            <h4 class="shop-sidebar-title">Price Filter</h4>
+                            <div class="price_filter mt-25">
+                                <span>Range:  $100.00 - 1.300.00 </span>
+                                <form method="post">
+                                <div id="slider-range"></div>
+                                <div class="price_slider_amount">
+                                    <div class="label-input">
+                                        <input type="text" id="amount" name="price2"  placeholder="Add Your Price" />
+                                    </div>
+                                    <button type="submit">Filter</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="shop-widget mt-40 shop-sidebar-border pt-35">
+                            <h4 class="shop-sidebar-title">Popular Tags</h4>
+                            <div class="shop-tags mt-25">
+                                <ul>
+                                    {% for c in cat %}
+
+                                    <li><a href="{{ path('front_productdetail' ,{'id': c.id})  }}">{{ c.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+
+
+    <script>
+        $( document ).ready(function() {
+            $("#row2,#row3,#row4,#row5").hide();
+
+
+            $( "#options" ).change(function() {
+                var selected = $( "#options option:selected" ).text();
+
+                if(selected=='Price Descending')
+
+                {
+                    $("#row1,#row3,#row4,#row5,#two,#four,#six").hide();
+                    $("#row2").show();
+
+                }
+                if (selected=='Price Ascending')
+                {
+                    $("#row1,#row2,#row4,#row5,#two,#four,#six").hide();
+                    $("#row3").show();
+
+                }
+                if(selected=='Name A-Z')
+                {
+                    $("#row1,#row2,#row3,#row5").hide();
+                    $("#row4").show();
+
+                }
+                if(selected=='Name Z-A')
+                {
+                    $("#row1,#row2,#row3,#row4,#two,#four,#six").hide();
+                    $("#row5").show();
+
+                }
+
+            });
+
+        });
+
+    </script>
+    <script>
+        $( document ).ready(function() {
+
+            $("#two,#four,#six").hide();
+
+
+
+            $( "#options2" ).change(function() {
+                var selected2 = $( "#options2 option:selected" ).text();
+
+
+                if(selected2=='2')
+
+                {
+                    $("#row1,#four,#six,#row2,#row3,#row4,#row5").hide();
+
+                    $("#two").show();
+
+                }
+                if (selected2=='4')
+                {
+                    $("#row1,#two,#six,#row2,#row3,#row4,#row5").hide();
+
+                    $("#four").show();
+
+                }
+                if(selected2=='6')
+                {
+                    $("#row1,#two,#four,#row2,#row3,#row4,#row5").hide();
+                    $("#six").show();
+
+                }
+                console.log(selected2);
+
+
+            });
+
+        });
+
+    </script>
+
+
+    <!-- all css here -->
+    <link rel="stylesheet" href="{{ asset('Front/assets/css/jquery-ui.css')}}">
+
+
+
+
+
+{% endblock %}

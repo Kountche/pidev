@@ -1,0 +1,39 @@
+<label for="type">Type de plante:</label>
+<select id="type" name="type" >
+    <option value="1"> Plante intérieur </option>
+    <option> Plante extérieur </option>
+    <option> autre </option>
+</select>
+
+<div id="div">
+</div>
+
+<div id="affichage">
+    <table border="1">
+        <tr>
+            <td>Id</td><td>price</td><td>stock</td>
+        </tr>
+        {% for i in voitures %}
+
+            <tr>
+                <td>{{ i.id}}</td>
+                <td>{{ i.price}}</td>
+                <td>{{ i.stock}}</td>
+
+            </tr>
+
+        {% endfor %}
+    </table>
+
+</div>
+{{ form_start(form) }}
+{{ form(form) }}
+    {{ form_errors(form) }}
+{{ form_end(form) }}
+
+<script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+<script>
+
+
+
+</script>

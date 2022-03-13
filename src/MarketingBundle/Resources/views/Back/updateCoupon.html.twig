@@ -1,0 +1,44 @@
+
+{% extends 'base.html.twig' %}
+
+{% block container %}
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-0">Coupon</h3>
+                <p class="text-muted m-b-30 font-13"> Modifier  coupon  </p>
+                <div class="table-responsive">
+                    {{ form_start(form) }}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Code coupon</th>
+                            <th>Montant</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td >{{ form_widget(form.code) }}</td>
+                            <td >{{ form_widget(form.amount) }}</td>
+                        </tr>
+                        <div style="background-color: red">
+                            <p style="color: white">{{Message}}</p>
+                        </div>
+                        </tbody>
+
+                    </table>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+

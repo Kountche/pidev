@@ -1,0 +1,12 @@
+AddWishlist:
+  path:   /addWishlist/{id}
+  defaults: { _controller: MarketingBundle:Whishlist:add }
+deleteWishliste:
+  path:   /delWishliste/{id}
+  defaults: { _controller: MarketingBundle:Whishlist:delete }
+showWishlist:
+  path:   /showWishlist
+  defaults: { _controller: MarketingBundle:Whishlist:show }
+showPromotion:
+  path:   /showPromotion
+  defaults: { _controller: MarketingBundle:Promotion:show }

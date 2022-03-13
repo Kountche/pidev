@@ -1,0 +1,84 @@
+
+{% extends 'base.html.twig' %}
+{% block container %}
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="white-box">
+                <h3 class="box-title">Categorie Overview</h3>
+                <form role="search" class="app-search hidden-xs" >
+                    <input type="text" placeholder="Search..." class="form-control" id="search" style="background-color: gainsboro;">
+                    <a href=""><i class="fa fa-search"></i></a>
+                </form>
+                <div class="table-responsive">
+                    <table class="table product-overview" id="contenu">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Description</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for p in categories %}
+
+                            <tr>
+                                <td>{{ p.categoryName }}</td>
+                                <td>
+                                    <img src="{{ asset('uploads/images/categories/' ~ p.categoryImage ) }}" alt="mac_mouse" width="80">
+                                </td>
+                                <td>{{ p.categoryDesc }}</td>
+
+
+
+
+                                <td><a href="{{ path('categorie_modify' ,{'id': p.id})  }}" class="text-inverse p-r-10" data-toggle="tooltip" title="Edit"><i class="ti-marker-alt"></i></a> <a href="{{ path('categorie_delete' ,{'id': p.id})  }}" class="text-inverse" title="Delete" data-toggle="tooltip"><i class="ti-trash"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {{ knp_pagination_render(categories) }}
+
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+    <script>
+        $(document).ready( function() {
+            // déterminer l'index des colonnes les colonnes
+            var colonnes = {};
+            $("#contenu thead th").each(function(index, th)
+                {
+                    colonnes[index] = $(th).text();
+                }
+            );
+
+// faire la recherche dans le tableau
+            $("#search").keyup(function()
+            {
+                var mots = $(this).val().toLowerCase().split(" ");
+                $("#contenu tbody tr").each(function(index, tr)
+                {
+                    if (mots[0].length > 0) $(tr).hide(); else $(tr).show();
+                    $("td", tr).each(function(index, td)
+                    {
+                        if (colonnes[index] in {'Name':true,'Description':true})
+                        {
+                            for (mot in mots)
+                            {
+                                if (mots[mot].length > 0 && $(td).text().toLowerCase().indexOf(mots[mot])>= 0)
+                                {
+                                    $(tr).show();
+                                    return false;
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+{% endblock %}

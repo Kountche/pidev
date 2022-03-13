@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from themes.evgenyfireform.com/felis-newsletter/demo/green/layout_4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Feb 2019 18:09:56 GMT -->
+<head>
+    <title>Felis newsletter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        a:link {color: #909090; text-decoration:none; outline:none}
+        a:visited {color: #909090; text-decoration:none; outline:none}
+        .a1 a:link {color:#202020; text-decoration:none; outline:none}
+        .a1 a:visited {color:#202020; text-decoration:none; outline:none}
+        .a2 a:link {color:#7c7c7c; text-decoration:none; outline:none}
+        .a2 a:visited {color:#7c7c7c; text-decoration:none; outline:none}
+
+        <!-- li a:link {color: #777777; text-decoration:none; outline:none}
+        li a:visited {color: #777777; text-decoration:none; outline:none} -->
+    </style>
+</head>
+<body style="background-color: #f1f1f1; margin:0; padding:0; line-height:1.2em; font-family:Trebuchet MS, sans-serif">
+<table width="650" cellpadding="0" cellspacing="0" align="center" border="0">
+    <tr>
+        <td valign="top">
+            <!-- B E G I N    H E A D E R -->
+            <table width="650" cellpadding="0" cellspacing="0" align="center" border="0" style="margin-top:18px; margin-bottom:21px; font-size:11px; color: #909090">
+                <tr>
+                    <td valign="top" align="right">
+                    </td>
+                </tr>
+            </table>
+            <table width="650" cellpadding="0" cellspacing="0" border="0" align="center" style="background-color:#ffffff">
+                <tr>
+                    <td height="30">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="25">
+                    </td>
+                    <td>
+                        <a href="#" target="_blank"><img src="{{ asset('mail/images/Image1.png') }}" border="0" width="110" height="40" alt="" style="display: block" /></a>
+                    </td>
+                    <td align="right" width="385" style="padding-right:20px; font-size:18px; color: #202020; line-height:1.3em">
+                    <div style="color: red;">  Product Name </div> {{ name }}<br />
+                        <span style="font-size:12px; color: #7c7c7c">{{ date|date('d-m-y')  }}</span>
+                    </td>
+                    <td align="center" width="56" style="background-color:#43A02A; font-size:14px; color: #ffffff; line-height:1.2em; padding-top:10px; padding-bottom:10px">
+                      New<br /><span style="font-size:20px"></span>
+                    </td>
+                    <td width="20">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30">
+                    </td>
+                </tr>
+            </table>
+            <table width="650" cellpadding="0" cellspacing="0" border="0" align="center" style="background-color:#ffffff; margin-bottom:20px">
+                <tr>
+                    <td>
+                        <img src="{{ img }}" border="0" width="650" height="250" alt="" style="display: block" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td height="2" style="background-color:#e5e5e5">
+                    </td>
+                </tr>
+            </table>
+
+
+            <table width="650" cellpadding="0" cellspacing="0" border="0" align="center"
+                   style="background-color:#ffffff; font-size:12px; color:#7c7c7c; margin-bottom:20px">
+                <tr>
+                    <td valign="top">
+                        <table width="230" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td height="15">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="20">
+                                </td>
+                                <td valign="top">
+                                    <table width="190" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td class="a1" valign="top" style="font-size:18px; color: #202020; background-image:url({{ asset('mail/images/px.gif')}});
+                                                    background-repeat:repeat-x; background-position:0 10px">
+                                                <span style="background-color:#ffffff; padding-right:10px"><a href="http://localhost/pepiniere/web/app_dev.php/">Visit our website</a></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top" style="padding-top:10px">
+                                           <div style="color: green;"> Long Description </div> {{ long }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top" style="padding-top:13px; padding-bottom:15px">
+                                                <a href="#" style="float:left"><img src="{{ asset('mail/images/download.gif')}}" border="0" width="103" height="30" alt="" style="display: block" /></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="20">
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td valign="top" width="210" height="145">
+                        <img src="{{ asset('mail/images/img210x145.jpg')}}" border="0" width="210" height="145" alt="" style="display: block" />
+                    </td>
+                    <td width="210" height="145" align="center" style="background-color:#43A02A; color:#ffffff">
+                        <span style="font-size:70px; line-height:1em">
+                            {% for d in dis %}
+
+                            {{ d.discount }}%</span><span style="font-size:20px">off</span><br /> check for more offers
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td height="2" colspan="3" style="background-color:#e5e5e5">
+                    </td>
+                </tr>
+            </table>
+
+            <table width="650" cellpadding="0" cellspacing="0" border="0" align="center"
+                   style="font-size:11px; color: #7c7c7c; margin-bottom:20px">
+                <tr>
+                    <td class="a2" align="center">
+                        You are currently signed up to Unitech
+                    </td>
+                </tr>
+            </table>
+            <!-- E N D     F O O T E R -->
+        </td>
+    </tr>
+</table>
+</body>
+
+</html>
+

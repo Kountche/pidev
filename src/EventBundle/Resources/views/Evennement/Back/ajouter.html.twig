@@ -1,0 +1,385 @@
+{% extends "base.html.twig" %}
+{% block container  %}
+
+    <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Events</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <a href="{{ path('evennement_back_afficher') }}"  class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Show events</a>
+
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="white-box">
+                    <h3 class="box-title">Add an event</h3>
+                    <div class="table-responsive">
+
+
+
+                        <form  method='post' id="mainForm" >
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                <label class="control-label">Nom</label>
+                                <input type="text" name="nom" class="form-control" id="nom" required>
+                                </div>
+                            </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Type</label>
+                                        <select class="form-control" name="type">
+                                            <option value="Music">Music</option>
+                                            <option value="Theatre">Theatre</option>
+                                            <option value="Cinema">Cinema</option>
+                                            <option value="Sport">Sport</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <label class="control-label">Lieux</label>
+                                    <input type="text" name="lieux" class="form-control" id="lieux" required>
+                                </div>
+                            </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Nombre de place</label>
+                                        <input type="text" name="nbPlace" class="form-control" id="nbPlace" required>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Duration</label>
+                                        <input type="number" name="duree" class="form-control" id="duree" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Télécharger photo</label>
+                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                            <div class="form-control" data-trigger="fileinput">
+                                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                <span class="fileinput-filename"></span>
+                                            </div>
+                                            <span class="input-group-addon btn btn-default btn-file">
+                                            <span class="fileinput-new">Select file</span>
+                                            <span class="fileinput-exists">Change</span>
+                                                <input type="file" name="photo"></span></div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Start date</label>
+                                        <input type="date" id="datedd" name="date"  min="2019-03-02" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label id="label" class="control-label">End date</label>
+                                        <input type="date" value="date" name="datefin"  id="datefin"  class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-12">Description de l'évennement</label>
+                                    <div class="col-md-12">
+                                        <textarea name="description" class="form-control"  rows="5"></textarea><br/>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                            <center>
+                            <div class="col-lg-2 col-sm-4 col-xs-12">
+                            <input type="submit" id="submit" value="Submit" class="btn btn-block btn-outline btn-danger">
+                            </div>
+                            <br/>
+                            </center>
+
+                        </form>
+
+
+                        <script src="{{ asset('Js/jquery-3.2.1.js') }}" ></script>
+                        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+                        <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+                        <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+                        <script>
+
+                            $(document).ready(function()
+                            {
+                                var today = new Date();
+                                $('#datedd').val(today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2));
+
+
+                                $("#nbPlace").keyup(function() {
+                              var input = $(this).val();        // ([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)
+                              var regex = new RegExp("^[0-9]+$");
+                              if (regex.test(input)) {
+
+                              } else {
+                                  $(this).val(input.substr(0, input.length-1));
+                                  alert("this field accepts only integer.");
+                              }
+                          });
+
+                          $("#nom").keyup(function() {
+                              var input = $(this).val();
+                              var regex = new RegExp("^[a-zA-Z0-9| |.|_]+$");
+                              if (regex.test(input)) {
+
+                              } else {
+                                  $(this).val(input.substr(0, input.length-1));
+                                  alert("this character is not accepted in this field.");
+                              }
+                          });
+
+
+                          $("#lieux").keyup(function() {
+                              var input = $(this).val();
+                              var regex = new RegExp("^[a-zA-Z0-9| |.]+$");
+                              if (regex.test(input)) {
+
+                              } else {
+                                  $(this).val(input.substr(0, input.length-1));
+                                  alert("this character is not accepted in this field.");
+                              }
+                          });
+
+
+
+                            $("#duree").keyup(function(){
+
+                                var date = new Date($("#datedd").val());
+                                var a = ($("#duree").val());
+
+
+
+                                var dateTime = date.getTime();
+                                var endTime = a * 86400000 ;
+                                var periode = dateTime + endTime ;
+
+                                var b = new Date(periode);
+                                var day = b.getDate();
+                                var dd= day.toString();
+                                var month = b.getMonth()+1;
+                                var mm= month.toString();
+                                var year = b.getFullYear();
+                                var yy= year.toString();
+                                var valid = yy+'-'+mm+'-'+dd;
+
+                                //var today = b.getFullYear()+"-"+(month)+"-"+(day) ;
+                               $('#datefin').val(b.getFullYear() + '-' + ('0' + (b.getMonth() + 1)).slice(-2) + '-' + ('0' + b.getDate()).slice(-2));
+
+
+
+
+
+
+                                if((a==1) || (a==0))
+                                {
+                                    $('#datefin').val(($("#datedd").val()));
+                                    $("#datefin").hide();
+                                    $("#label").hide();
+                                }
+                                else
+                                {
+                                    $("#datefin").show();
+                                    $("#label").show();
+                                }
+
+
+                            });
+
+                           $("#datedd").keyup(function(){
+
+
+                               $('#datefin').val(($("#datedd").val()));
+
+
+                          });
+
+                          $("#datefin").mouseleave(function(){
+                              var dated = new Date($("#datedd").val());
+                              var datef = new Date($("#datefin").val());
+
+                              var a = (datef-dated) / 86400000 ;
+                              ($("#duree").val(a));
+
+
+                              if(datef>dated){var a=1;}
+                              else {alert("The end date must be greater.")
+                                  $('#datefin').val(($("#datedd").val()));
+                                  ($("#duree").val(0));
+                              }
+
+                          });
+
+                            });
+
+
+
+
+
+
+
+                        </script>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- .right-sidebar -->
+
+
+
+
+
+
+
+
+
+        <div class="right-sidebar">
+            <div class="slimscrollright">
+                <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+                <div class="r-panel-body">
+                    <ul>
+                        <li><b>Layout Options</b></li>
+                        <li>
+                            <div class="checkbox checkbox-info">
+                                <input id="checkbox1" type="checkbox" class="fxhdr">
+                                <label for="checkbox1"> Fix Header </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox checkbox-warning">
+                                <input id="checkbox2" type="checkbox" class="fxsdr">
+                                <label for="checkbox2"> Fix Sidebar </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checkbox checkbox-success">
+                                <input id="checkbox4" type="checkbox" class="open-close">
+                                <label for="checkbox4"> Toggle Sidebar </label>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul id="themecolors" class="m-t-20">
+                        <li><b>With Light sidebar</b></li>
+                        <li><a href="javascript:void(0)" theme="default" class="default-theme working">1</a></li>
+                        <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
+                        <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
+                        <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
+                        <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
+                        <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
+                        <li><b>With Dark sidebar</b></li>
+                        <br/>
+                        <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
+                        <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
+                        <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
+                        <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
+                        <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
+                        <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
+                    </ul>
+                    <ul class="m-t-20 chatonline">
+                        <li><b>Chat option</b></li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/varun.jpg')}}" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/genu.jpg')}}" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/ritesh.jpg')}}" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/arijit.jpg')}}" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/govinda.jpg')}}" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/hritik.jpg')}}" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/john.jpg')}}" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/pawandeep.jpg')}}" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /.right-sidebar -->
+    </div>
+
+
+
+
+
+
+    <script src="{{ asset('assets/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('assets/bootstrap/dist/js/tether.min.js')}}"></script>
+    <script src="{{ asset('assets/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('assets/plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js')}}"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="{{ asset('assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js')}}"></script>
+    <!--slimscroll JavaScript -->
+    <script src="{{ asset('assets/js/jquery.slimscroll.js')}}"></script>
+    <!--Wave Effects -->
+    <script src="{{ asset('assets/js/waves.js')}}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ asset('assets/js/custom.min.js')}}"></script>
+    <!-- Sparkline chart JavaScript -->
+    <script src="{{ asset('assets/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
+    <script src="{{ asset('assets/plugins/bower_components/jquery-sparkline/jquery.charts-sparkline.js')}}"></script>
+    <script src="{{ asset('assets/js/jasny-bootstrap.js')}}"></script>
+    <!--Style Switcher -->
+    <script src="{{ asset('assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
+
+
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2017 &copy; Elite Admin brought to you by themedesigner.in </footer>
+    </div>
+{% endblock %}
+
+

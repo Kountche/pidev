@@ -1,0 +1,178 @@
+{% extends 'base2.html.twig' %}
+{% block container2 %}
+<!-- Mirrored from demo.devitems.com/phuler-v4/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Feb 2019 14:40:00 GMT -->
+
+<body>
+<!-- header start -->
+<div class="breadcrumb-area gray-bg">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"> Rendez-Vous </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    function surligne(champ, erreur)
+    {
+        if(erreur)
+            champ.style.backgroundColor = "#fba";
+        else
+            champ.style.borderColor = "";
+    }
+
+
+
+
+    function dateverif()
+    {
+        var lyoum = new Date();
+        var  dd = lyoum.getDate();
+        var  mm = '0' + (lyoum.getMonth()+1);
+        var  yyyy = lyoum.getFullYear();
+        lyoum = yyyy + '-' + mm + '-' + dd;
+
+        if (document.getElementById("app_date").value<=lyoum)
+        {
+            document.getElementById("app_date").setAttribute("style","border-color:red");
+            return eureur;
+        }
+        else {
+            document.getElementById("app_date").setAttribute("style","border-color:");
+        }
+    }
+
+
+    function verifForm()
+    {
+
+        var dateok=dateverif();
+
+        if(dateok) {
+
+            var modal = document.getElementById('myModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            alert("Votre rendez_vous a ete enregistrer");
+
+            return true;
+        }
+
+        else
+        {
+            alert("Veuillez remplir correctement tous les champs");
+
+            return false;
+        }
+    }
+</script>
+
+<!-- checkout-area start -->
+<div class="checkout-area pb-45 pt-65">
+    <div class="container">
+
+
+        <form method="post"  onsubmit="" >
+            <div class="panel-body">
+                <div class="billing-information-wrapper">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="billing-info">
+                                <label> Username</label>
+                                <input type="text" name="app_username" id="app_username" readonly="true" value={{ app.user.username|default('') }}>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="billing-info">
+                                <label> Email</label>
+                                <input type="text" name="app_email" id="app_email"  value={{ app.user.email|default('') }}>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="billing-info">
+                                <label>Time</label>
+                                <input type="time" name="app_time" id="app_time">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <div class="billing-info">
+                                <label>Date</label>
+                                <input type="date" name="app_date" id="app_date" onblur="dateverif(this)">
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-6">
+                            <div class="billing-select">
+                                <label>Appointment Pattern</label>
+                                <select name="app_pat" id="app_pat">
+                                    <option value="traiter une reclamation">traiter une reclamation</option>
+                                    <option value="echanger un produit">echanger un produit</option>
+                                    <option value="information">information</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12 col-md-12">
+                        <div class="billing-info">
+                            <input type="text" name="app_etat" id="app_etat" value="0" hidden>
+                            <input type="text" name="app_userid" id="app_userid" hidden value={{ app.user.id }}>
+                        </div>
+                    </div>
+
+                    <div class="billing-back-btn">
+                        {% if model.getAppointmenttime()!="" %}
+                        <div class="billing-back">
+                            <a href="{{ path('front_reclamation_front_applist') }}"><i class="ion-arrow-up-c"></i>Next</a>
+                        </div>
+                        {% else %}
+                        <div class="billing-btn">
+                            <button type="submit">Valider</button>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+

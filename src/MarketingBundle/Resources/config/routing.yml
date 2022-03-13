@@ -1,0 +1,6 @@
+marketing_front:
+    prefix:     /marketing_front
+    resource: "@MarketingBundle/Resources/config/routing/Front.yml"
+marketing_back:
+    prefix:     /marketing_back
+    resource: "@MarketingBundle/Resources/config/routing/Back.yml"

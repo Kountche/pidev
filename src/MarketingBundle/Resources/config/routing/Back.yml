@@ -1,0 +1,62 @@
+showPromotions:
+  path:   /Promotions
+  defaults: { _controller: MarketingBundle:Promotion:Show }
+
+AddPromotions:
+  path: /AddPromotion
+  defaults: { _controller: MarketingBundle:Promotion:Add}
+
+DeletePromotions:
+  path: /DelPromotion/{id}
+  defaults: { _controller: MarketingBundle:Promotion:Delete}
+
+UpdatePromotions:
+  path: /UpPromotion/{id}
+  defaults: { _controller: MarketingBundle:Promotion:Update}
+
+ShowCoupons:
+  path: /ShowCoupons
+  defaults: { _controller: MarketingBundle:Coupon:Show}
+
+AddCoupons:
+  path: /AddCoupon
+  defaults: { _controller: MarketingBundle:Coupon:AddCoupon}
+
+DeleteCoupon:
+  path: /DelCoupon/{id}
+  defaults: { _controller: MarketingBundle:Coupon:Delete}
+
+UpdateCoupon:
+  path: /UpCoupon/{id}
+  defaults: { _controller: MarketingBundle:Coupon:Update}
+RechercheCoupon:
+  path: /Recherche
+  defaults: { _controller: MarketingBundle:Coupon:Recherche}
+FiltreASCCoupon:
+  path: /FiltreASC
+  defaults: { _controller: MarketingBundle:Coupon:FiltreASC}
+FiltreDESCCoupon:
+  path: /FiltreDESC
+  defaults: { _controller: MarketingBundle:Coupon:FiltreDESC}
+
+RecherchePromotion:
+  path: /RecherchePromo
+  defaults: { _controller: MarketingBundle:Promotion:Recherche}
+FiltreDiscountASCromotion:
+  path: /FiltreDiscountASC
+  defaults: { _controller: MarketingBundle:Promotion:FiltreDiscountASC}
+FiltreDiscountDESCromotion:
+  path: /FiltreDiscountDESC
+  defaults: { _controller: MarketingBundle:Promotion:FiltreDiscountDESC}
+FiltreDateASCPromotion:
+  path: /FiltreDateASC
+  defaults: { _controller: MarketingBundle:Promotion:FiltreDateASC}
+FiltreDateDESCPromotion:
+  path: /FiltreDateDESC
+  defaults: { _controller: MarketingBundle:Promotion:FiltreDateDESC}
+ShowWishlist:
+  path: /ShowWishlist
+  defaults: { _controller: MarketingBundle:Whishlist:showBack}
+deleteWishlist:
+  path:   /delWishlist/{id}
+  defaults: { _controller: MarketingBundle:Whishlist:delete2 }

@@ -1,0 +1,370 @@
+{% extends 'base2.html.twig' %}
+{% block container2 %}
+<div class="slider-area">
+    <div class="slider-active owl-dot-style owl-carousel">
+        <div class="single-slider pt-175 pb-258 bg-img" style="background-image:url({{ asset('Front/assets/img/slider/ACCUEIL.jpg')}});">
+            <div class="container">
+                <div class="slider-content slider-animated-1">
+                    <h3 class="animated">New Arrivals</h3>
+                    <h1 class="animated">For Mother’s Day!</h1>
+                    <h5 class="animated">Exclusive Offer -10% Off This Week</h5>
+                    <div class="slider-btn mt-45">
+                        <a class="animated" href="product-details.html">shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-slider pt-175 pb-258 bg-img" style="background-image:url({{ asset('Front/assets/img/slider/758084250-nieuwkuijk-pepiniere-horticulture-exploitation-horticole-jardinier.jpg') }});">
+            <div class="container">
+                <div class="slider-content slider-animated-2">
+                    <h3 class="animated">New Arrivals</h3>
+                    <h1 class="animated">For Mother’s Day!</h1>
+                    <h5 class="animated">Exclusive Offer -10% Off This Week</h5>
+                    <div class="slider-btn mt-45">
+                        <a class="animated" href="product-details.html">shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="banner-area">
+    <div class="container">
+        <div class="banner-wrap">
+            <div class="row">
+                {% for  c in categories %}
+
+                <div class="col-lg-4 col-md-4">
+                    <div class="single-banner img-zoom mb-30">
+                        <a href="{{ path('front_productshop' ,{'id': c.id})  }}">
+                            <img src="{{ asset('uploads/images/categories/' ~ c.categoryImage ) }}" alt="">
+                        </a>
+                        <div class="banner-content">
+                            <h4>{{ c.categoryName }}</h4>
+                            <a href="{{ path('front_productshop' ,{'id': c.id})  }}">shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                {%  endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product-area pt-40 pb-70">
+    <div class="container">
+        <div class="product-top-bar section-border mb-35">
+            <div class="section-title-wrap">
+                <h3 class="section-title section-bg-white">Featured Products</h3>
+            </div>
+            <div class="product-tab-list nav section-bg-white">
+                <a class="active" data-toggle="tab" href="#tab1">
+                    <h4>All </h4>
+                </a>
+                <a data-toggle="tab" href="#tab2">
+                    <h4>New products </h4>
+                </a>
+                <a data-toggle="tab" href="#tab3">
+                    <h4>Best sellers  </h4>
+                </a>
+                <a data-toggle="tab" href="#tab4">
+                    <h4>Discount products </h4>
+                </a>
+            </div>
+        </div>
+        <div class="tab-content jump">
+            <div id="tab1" class="tab-pane active">
+                <div class="featured-product-active owl-carousel product-nav">
+                    {% for  p in products %}
+                        {% if p.status=='Published' %}
+                        {%  set prix = p.price - ((p.price* p.solde.discount))/100 %}
+
+                    <div class="product-wrapper">
+                        <div class="product-img">
+                            <a href="{{ path('front_productdetail' ,{'id': p.id})  }}">
+                                <img alt="" src="{{ asset('uploads/images/' ~ p.image ) }}">
+                            </a>
+                            {% if p.solde.discount == 0 %}
+
+                            {% else %}
+                            <span>-{{ p.solde.discount }}%</span>
+
+                            {% endif %}
+
+                            <div class="product-action">
+                                <a href="{{ path('AddWishlist',{'id':p.id}) }}" title="Wishlist">
+                                    <i class="icon-heart"></i>
+                                </a>
+                                {% if is_granted('ROLE_USER')   %}
+                                    <a class="action-cart" href="{{ path('add_cart',{'id': p.id}) }}" title="Add To Cart">
+                                        <i class="icon-handbag"></i>
+                                    </a>
+                                {% else  %}
+                                    <a class="action-cart" href="#" title="Add To Cart">
+                                        <i class="icon-handbag"></i>
+                                    </a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="product-content text-center">
+                            <h4>
+                                <a href="{{ path('front_productdetail' ,{'id': p.id})  }}">{{ p.name }} </a>
+                            </h4>
+                            <div class="product-price-wrapper">
+                                {% if p.solde.discount==0 %}
+                                <span>${{ p.price }}</span>
+                                {% else %}
+                                <span>${{ prix }}</span>
+                                <span class="product-price-old">${{ p.price }} </span>
+                                    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div id="tab2" class="tab-pane">
+                <div class="featured-product-active owl-carousel product-nav">
+                    {% for new in newproduct %}
+                        {%  set prix = new.price - ((new.price* new.solde.discount))/100 %}
+
+                        <div class="product-wrapper">
+                        <div class="product-img">
+                            <a href="{{ path('front_productdetail' ,{'id': new.id})  }}">
+                                <img alt="" src="{{ asset('uploads/images/' ~ new.image ) }}">
+                            </a>
+                            {% if new.solde.discount == 0 %}
+
+                            {% else %}
+                                <span>-{{ new.solde.discount }}%</span>
+
+                            {% endif %}
+                            <div class="product-action">
+                                <a href="{{ path('AddWishlist',{'id':new.id}) }}" title="Wishlist">
+                                    <i class="icon-heart"></i>
+                                </a>
+                                {% if is_granted('ROLE_USER')   %}
+                                    <a class="action-cart" href="{{ path('add_cart',{'id': new.id}) }}" title="Add To Cart">
+                                        <i class="icon-handbag"></i>
+                                    </a>
+                                {% else  %}
+                                    <a class="action-cart" href="#" title="Add To Cart">
+                                        <i class="icon-handbag"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="product-content text-center">
+                            <h4>
+                                <a href="{{ path('front_productdetail' ,{'id': new.id})  }}">{{ new.name }}</a>
+                            </h4>
+                            <div class="product-price-wrapper">
+                                {% if new.solde.discount==0 %}
+                                    <span>${{ new.price }}</span>
+                                {% else %}
+                                    <span>${{ prix }}</span>
+                                    <span class="product-price-old">${{ new.price }} </span>
+                                {% endif %}
+                            </div>
+
+
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div id="tab3" class="tab-pane">
+                <div class="featured-product-active owl-carousel product-nav">
+                    {% for sellers in best %}
+                        {%  set prix = sellers.price - ((sellers.price* sellers.solde.discount))/100 %}
+
+                        <div class="product-wrapper">
+                        <div class="product-img">
+                            <a href="{{ path('front_productdetail' ,{'id': sellers.id})  }}">
+                                <img alt="" src="{{ asset('uploads/images/' ~ sellers.image ) }}">
+                            </a>
+                            {% if sellers.solde.discount==0 %}
+                            {% else %}
+                            <span>-{{ sellers.solde.discount }}%</span>
+                                {% endif %}
+                            <div class="product-action">
+                                <a href="{{ path('AddWishlist',{'id':sellers.id}) }}" title="Wishlist">
+                                    <i class="icon-heart"></i>
+                                </a>
+                                {% if is_granted('ROLE_USER')   %}
+                                    <a class="action-cart" href="{{ path('add_cart',{'id': sellers.id}) }}" title="Add To Cart">
+                                        <i class="icon-handbag"></i>
+                                    </a>
+                                {% else  %}
+                                    <a class="action-cart" href="#" title="Add To Cart">
+                                        <i class="icon-handbag"></i>
+                                    </a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="product-content text-center">
+                            <h4>
+                                <a href="{{ path('front_productdetail' ,{'id': sellers.id})  }}">{{ sellers.name }} </a>
+                            </h4>
+                            <div class="product-price-wrapper">
+                                {% if sellers.solde.discount==0 %}
+                                    <span>${{ sellers.price }}</span>
+                                {% else %}
+                                    <span>${{ prix }}</span>
+                                    <span class="product-price-old">${{ sellers.price }} </span>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div id="tab4" class="tab-pane">
+                <div class="featured-product-active owl-carousel product-nav">
+                    {% for d in discount %}
+                        {%  set prix = d.price - ((d.price* d.solde.discount))/100 %}
+
+                        <div class="product-wrapper">
+                        <div class="product-img">
+                            <a href="{{ path('front_productdetail' ,{'id': d.id})  }}">
+                                <img alt="" src="{{ asset('uploads/images/' ~ d.image ) }}">
+                            </a>
+                            {% if d.solde.discount == 0 %}
+                            {% else %}
+                            <span>-{{ d.solde.discount }}%</span>
+                                {% endif %}
+                            <div class="product-action">
+                                <a href="{{ path('AddWishlist',{'id':d.id}) }}" title="Wishlist">
+                                    <i class="icon-heart"></i>
+                                </a>
+                                {% if is_granted('ROLE_USER')   %}
+                                    <a class="action-cart" href="{{ path('add_cart',{'id': d.id}) }}" title="Add To Cart">
+                                        <i class="icon-handbag"></i>
+                                    </a>
+                                {% else  %}
+                                    <a class="action-cart" href="#" title="Add To Cart">
+                                        <i class="icon-handbag"></i>
+                                    </a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="product-content text-center">
+                            <h4>
+                                <a href="{{ path('front_productdetail' ,{'id': d.id})  }}">{{ d.name }}</a>
+                            </h4>
+                            <div class="product-price-wrapper">
+                                {% if d.solde.discount==0 %}
+                                    <span>${{ d.price }}</span>
+                                {% else %}
+                                    <span>${{ prix }}</span>
+                                    <span class="product-price-old">${{ d.price }} </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="best-selling-product pt-70 pb-75 gray-bg">
+    <div class="container">
+        <div class="product-top-bar section-border mb-35">
+            <div class="section-title-wrap">
+                <h3 class="section-title section-bg-gray">Best Selling Products</h3>
+            </div>
+        </div>
+        <div class="best-selling-wrap">
+            <div class="best-selling-active owl-carousel product-nav">
+                {% for p in promotion %}
+                    <div class="single-best-selling">
+                        <div class="row">
+                            <div class="col-lg-6 col-xl-5 col-md-6">
+                                <div class="single-best-img">
+                                    <img class="tilter" src="{{ asset('Front/assets/img/banner/deal-1.png')}}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-7 col-md-6">
+                                <div class="deals-content text-center deal-mrg">
+                                    <img alt="" src="{{ asset('Front/assets/img/icon-img/deals-2.png')}}">
+                                    <h2>Hot Deal ! Sale Up To <span>{{ p.discount }}% Off</span></h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
+                                    <div class="timer timer-style" id="mycountdown">
+                                        <div data-countdown="{{ p.dateF|date('Y-m-d H:i:s') }}">
+                                            <span class="cdown day"> <p>Days</p></span>
+                                            <span class="cdown hour"> <p>Hour</p></span>
+                                            <span class="cdown minutes"> <p>Min</p></span>
+                                            <span>00 <p>Sec</p></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <script src="{{ asset('js/jquery.countdown.js')}}"></script>
+                <script type="text/javascript">
+                    $("#mycountdown")
+                        .countdown("2021/01/01", function(event) {
+                            $('.cdown day').text(
+                                event.strftime('%D')
+                            );
+                            $('.cdown hour').text(
+                                event.strftime('%H')
+                            );$('.cdown minutes').text(
+                                event.strftime('%M')
+                            )
+                        });
+                </script>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+    <div class="testimonials-area bg-img pt-120 pb-115" style="background-image:url({{ asset('Front/assets/img/bg/bg-1.jpg')}}); ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto col-12">
+                    <div class="testimonial-active owl-carousel">
+                        <div class="single-testimonial text-center">
+                            <div class="testimonial-img">
+                                <img alt="" src="{{ asset('Front/assets/img/icon-img/testi.png')}}">
+                            </div>
+                            <p>When a beautiful design is combined with powerful technology,<br> it truly is an artwork. I love how my website operates and looks with this theme. <br>Thank you for the awesome product. </p>
+                            <h4>Samia Robiul</h4>
+                        </div>
+                        <div class="single-testimonial text-center">
+                            <div class="testimonial-img">
+                                <img alt="" src="{{ asset('Front/assets/img/icon-img/testi.png')}}">
+                            </div>
+                            <p>“ Lorem ipsum dolor sit, con adipisicing elit, sed do eiusmod tempor <br>incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <br>exercitati ullamco laboris  ” </p>
+                            <h4> Tayeb Rayed</h4>
+                        </div>
+                        <div class="single-testimonial text-center">
+                            <div class="testimonial-img">
+                                <img alt="" src="{{ asset('Front/assets/img/icon-img/testi.png')}}">
+                            </div>
+                            <p>When a beautiful design is combined with powerful ,<br> technology it truly is an artwork. I love how my website operates and looks with this  <br>theme. Thank you for the awesome product. </p>
+                            <h4>Hamim Ahamed</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

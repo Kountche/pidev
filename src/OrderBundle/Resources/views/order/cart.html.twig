@@ -1,0 +1,291 @@
+{% extends 'base2.html.twig' %}
+
+{% block container2  %}
+
+  <div class="cart-main-area pt-60 pb-65">
+    <div class="container">
+      <h3 class="page-title">Your cart items</h3>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <form action="#">
+            <div class="table-content table-responsive">
+              <table>
+                <thead>
+                <tr>
+                  <th></th>
+                  <th>Image</th>
+                  <th>Product Name</th>
+                  <th>Until Price</th>
+                  <th>Qty</th>
+                  <th>Subtotal</th>
+                  <th>Edit Qty</th>
+                  <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in orders %}
+                <tr>
+
+                  <td >
+                    <input type="checkbox" name="state">
+                  </td>
+                  <td class="product-thumbnail">
+                    <a href="{{ path('front_productdetail' ,{'id': order.productid.id})  }}"><img src="{{ asset('uploads/images/' ~ order.productid.image) }}" alt=""></a>
+                  </td>
+                  <td class="product-name"><a href="#">{{ order.productid.name }} </a></td>
+                  <td class="product-price-cart">
+
+
+                          <div class="product-price-wrapper">
+                              {% if order.productid.solde.discount==0 %}
+                                  <span>${{  order.productid.price }}</span>
+                              {% else %}
+                                  {%  set prix = order.productid.price - (( order.productid.price* order.productid.solde.discount))/100 %}
+                                  <span>${{ prix }}</span>
+                                  <span class="product-price-old">${{ order.productid.price }} </span>
+                              {% endif %}
+                          </div>
+
+
+                  </td>
+                  <td class="product-quantity">
+                    <div class="pro-dec-cart">
+
+                      <input class="cart-plus-minus-box" type="text" value="{{ order.orderamount }}" name="qtybutton"></a>
+                        <span>
+                          {% if order.orderamount>= order.productid.stock   %}
+                              stock epuiser
+                          {% endif %}
+                        </span>
+                    </div>
+                  </td>
+                  <td class="product-subtotal">${{ order.ordersubtoatal }}</td>
+                  <td class="product-remove">
+                    <a href="{{ path('edit2_cart',{'id': order.orderid }) }}"><--
+                    <a href="{{ path('edit_cart',{'id': order.orderid }) }}">-->
+                  <td class="product-remove">
+                    <a href="{{ path('deleting' ,{'id': order.orderid }) }}"><i class="fa fa-times"></i></a>
+                  </td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="cart-shiping-update-wrapper">
+                  <div class="cart-shiping-update">
+                    <a href="#">Continue Shopping</a>
+                  </div>
+                  <div class="cart-clear">
+                    <a href="{{ path('update_cart') }}">Update Cart</a>
+                    <a href="{{ path('clear_cart') }}">Clear Shopping Cart</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="cart-tax">
+                <div class="title-wrap">
+                  <h4 class="cart-bottom-title section-bg-gray">Estimate Shipping And Tax</h4>
+                </div>
+                <div class="tax-wrapper">
+                  <p>Enter your destination to get a shipping estimate.</p>
+                  <div class="tax-select-wrapper">
+                    <div class="tax-select">
+                      <label>
+                        * Country
+                      </label>
+                      <select class="email s-email s-wid">
+                        <option>Bangladesh</option>
+                        <option>Albania</option>
+                        <option>Åland Islands</option>
+                        <option>Afghanistan</option>
+                        <option>Belgium</option>
+                      </select>
+                    </div>
+                    <div class="tax-select">
+                      <label>
+                        * Region / State
+                      </label>
+                      <select class="email s-email s-wid">
+                        <option>Bangladesh</option>
+                        <option>Albania</option>
+                        <option>Åland Islands</option>
+                        <option>Afghanistan</option>
+                        <option>Belgium</option>
+                      </select>
+                    </div>
+                    <div class="tax-select">
+                      <label>
+                        * Zip/Postal Code
+                      </label>
+                      <input type="text">
+                    </div>
+                    <button class="cart-btn-2" type="submit">Get A Quote</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="discount-code-wrapper">
+                <div class="title-wrap">
+                  <h4 class="cart-bottom-title section-bg-gray">Use Coupon Code</h4>
+                </div>
+                <div class="discount-code">
+                  <p>Enter your coupon code if you have one.</p>
+                  <form action="{{ path('coupon_cart') }}" method="post">
+                    <input type="text" required="" name="name">
+                    <button class="cart-btn-2" type="submit">Apply Coupon</button>
+                  </form>
+                </div>
+              </div>
+                <div class="discount-code-wrapper">
+                    <div class="title-wrap">
+                        <h4 class="cart-bottom-title section-bg-gray">Use FIDELITY POINTS</h4>
+                    </div>
+                    <div class="discount-code">
+                        <p>ENTER NUMBER OF POINTS TO USE</p>
+                        <form action="{{ path('points_cart') }}" method="post">
+                            <input type="text" required="" name="points">
+                            <button class="cart-btn-2" type="submit">Apply Points</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+              <div class="grand-totall">
+                <div class="title-wrap">
+                  <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                </div>
+                <h5>Total products <span>
+                        {% if is_granted('ROLE_USER')   %}
+                        ${{ cart.cartsubtotal }}
+                        {% else  %}
+                            0
+                        {% endif %}
+                    </span></h5>
+                <div class="total-shipping">
+                  <h5>Total shipping</h5>
+                  <ul>
+                    <li><input type="checkbox"> Standard <span>$20.00</span></li>
+                    <li><input type="checkbox"> Express <span>$30.00</span></li>
+                  </ul>
+                </div>
+                <h4 class="grand-totall-title">Grand Total
+                  <span id="usd" >
+                      {% set usdcal =  usd * cart.carttotal  %}
+                      USD {{ usdcal }}
+                    </span>
+                  <span id="eur" >
+                      {% set eurcal =  eur * cart.carttotal  %}
+                      EUR {{ eurcal }}
+                    </span>
+                  <span id="jpy" >
+                      {% set jpycal =  jpy * cart.carttotal  %}
+                      JPY {{ jpycal }}
+                    </span>
+                  <span id="btc" >
+                    {% set btccal = btc * cart.carttotal  %}
+                      BTC {{ btccal }}
+                    </span>
+
+                  <span id="eth" >
+                      {% set ethcal =  eth * cart.carttotal  %}
+                      ETH {{ ethcal }}
+                    </span>
+                  <span>/</span>
+                  <span>
+                        {% if is_granted('ROLE_USER')   %}
+                            ${{ cart.carttotal }}
+                        {% else  %}
+                          0
+                        {% endif %}
+
+                    </span>
+
+                  <select id="currency">
+                    <option >USD</option>
+                    <option >EUR</option>
+                    <option >JPY</option>
+                    <option >BTC</option>
+                    <option >ETH</option>
+                  </select></h4>
+
+                <a href="#">Proceed to Checkout</a>
+                  <a href="#">donwload facture</a>
+                <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+                <script>paypal.Buttons().render('body');</script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+
+
+  <script>
+      $( document ).ready(function() {
+          $("#eur,#jpy,#btc,#eth").hide();
+
+
+          $( "#currency" ).change(function() {
+              var selected = $( "#currency option:selected" ).text();
+
+              if(selected=='EUR')
+
+              {
+                  $("#jpy,#btc,#eth,#usd").hide();
+                  $("#eur").show();
+
+              }
+              if (selected=='JPY')
+              {
+                  $("#eur,#btc,#eth,#usd").hide();
+                  $("#jpy").show();
+
+              }
+              if(selected=='BTC')
+              {
+                  $("#jpy,#eur,#eth,#usd").hide();
+                  $("#btc").show();
+
+              }
+              if(selected=='ETH')
+              {
+                  $("#jpy,#btc,#eur,#usd").hide();
+                  $("#eth").show();
+
+              }
+              if(selected=='USD')
+              {
+                  $("#jpy,#btc,#eur,#eth").hide();
+                  $("#usd").show();
+
+              }
+
+          });
+
+      });
+
+  </script>
+
+{% endblock %}
+
+{% block stylejavascrit %}
+<script src="{{ asset("Front/assets/js/vendor/jquery-1.12.0.min.js") }}"></script>
+<script src="{{ asset("Front/assets/js/popper.js") }} "></script>
+<script src="{{ asset("Front/assets/js/bootstrap.min.js") }}"></script>
+<script src="{{ asset("Front/assets/js/imagesloaded.pkgd.min.js") }}"></script>
+<script src="{{ asset("Front/assets/js/isotope.pkgd.min.js") }}"></script>
+<script src="{{ asset("Front/assets/js/ajax-mail.js") }}"></script>
+<script src="{{ asset("Front/assets/js/owl.carousel.min.js") }}"></script>
+<script src="{{ asset("Front/assets/js/plugins.js") }}"></script>
+<script src="{{ asset("Front/assets/js/main.js") }}"></script>
+
+{% endblock %}
